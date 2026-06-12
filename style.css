@@ -1,208 +1,366 @@
-:root {
-    --brand-green-dark: #0f3622;
-    --brand-green-mid: #1c5936;
-    --brand-green-light: #7cb342;
-    --brand-lime: #a3e635;
-    --brand-lime-hover: #baf255;
-    --bg-canvas: #f4f7f5;
-    --bg-card: #ffffff;
-    --text-main: #14241c;
-    --text-muted: #5c7066;
-    --ui-border: #e2e9e5;
-    --ui-radius: 12px;
+// CONTROLE DE NAVEGAÇÃO ENTRE ABAS
+function irParaAba(idAba) {
+    document.querySelectorAll('.tab-content').forEach(container => container.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(botao => botao.classList.remove('active'));
+    
+    document.getElementById(`tab-${idAba}`).classList.add('active');
+    document.getElementById(`btn-tab-${idAba}`).classList.add('active');
+    
+    const titulos = {
+        painel: ["Monitoramento de Impacto Agroecológico", "Tecnologia aplicada ao desenvolvimento sustentável da Escola do Campo rural."],
+        agroecologia: ["Espaço de Capacitação Científica", "Visão detalhada e aprofundada das seis grandes diretrizes conservacionistas."],
+        licoes: ["Quiz e Avaliação Continuada", "Fixação teórica através de blocos de múltipla escolha integrados."],
+        materiais: ["Central de Recursos Didáticos", "Visualização integrada de acervos científicos públicos sem links externos."],
+        desafios: ["Módulos de Gamificação Prática", "Lógica de computação e pareamento para memorização biológica ativa."],
+        progresso: ["Painel de Métricas e Resultados", "Análise de evolução conceitual obtida nos simuladores computadorizados."]
+    };
+    
+    if (titulos[idAba]) {
+        document.getElementById('main-page-title').innerText = titulos[idAba][0];
+        document.getElementById('main-page-subtitle').innerText = titulos[idAba][1];
+    }
+    
+    if (idAba === 'desafios') {
+        reiniciarJogoMemoria();
+    }
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-canvas); color: var(--text-main); overflow-x: hidden; }
-
-/* CONFIGURAÇÃO DO LAYOUT DA INTERFACE */
-.app-layout { display: flex; min-height: 100vh; }
-.sidebar-container { width: 280px; background-color: var(--brand-green-dark); padding: 2rem 1.5rem; display: flex; flex-direction: column; flex-shrink: 0; }
-.main-viewport { flex-grow: 1; padding: 2rem 2.5rem; display: flex; flex-direction: column; gap: 2rem; max-width: calc(100% - 280px); }
-
-/* MARCA E SISTEMA DE NAVEGAÇÃO */
-.brand-wrapper { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2.5rem; }
-.brand-avatar { font-size: 2rem; background-color: rgba(255,255,255,0.1); width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
-.brand-title { color: #ffffff; font-size: 1.2rem; font-weight: 800; }
-.brand-subtitle { color: var(--brand-lime); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-
-.nav-list { display: flex; flex-direction: column; gap: 0.4rem; flex-grow: 1; }
-.nav-btn { background: none; border: none; text-align: left; padding: 0.85rem 1rem; border-radius: 8px; color: #a1b5aa; font-size: 0.9rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.8rem; transition: 0.2s; }
-.nav-btn:hover { background-color: rgba(255,255,255,0.05); color: #ffffff; }
-.nav-btn.active { background-color: var(--brand-green-mid); color: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-
-.sidebar-alert-box { background-color: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 1.2rem; border-radius: 10px; margin-top: auto; }
-.alert-box-title { color: #ffffff; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 0.3rem; }
-.alert-box-desc { color: #a1b5aa; font-size: 0.75rem; line-height: 1.4; margin-bottom: 0.8rem; }
-.alert-box-action { background-color: var(--brand-lime); color: var(--brand-green-dark); border: none; font-weight: 700; width: 100%; padding: 0.5rem; border-radius: 6px; font-size: 0.75rem; cursor: default; }
-
-/* CABEÇALHO DA VIEWPORT */
-.header-viewport { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--ui-border); padding-bottom: 1.5rem; }
-.welcome-title { font-size: 1.5rem; font-weight: 800; color: var(--brand-green-dark); letter-spacing: -0.5px; }
-.welcome-subtitle { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem; }
-.profile-badge { display: flex; align-items: center; gap: 0.8rem; background-color: var(--bg-card); padding: 0.5rem 1rem; border-radius: 30px; border: 1px solid var(--ui-border); }
-.profile-avatar { font-size: 1.4rem; }
-.profile-name { display: block; font-size: 0.8rem; font-weight: 700; color: var(--brand-green-dark); }
-.profile-role { display: block; font-size: 0.7rem; color: var(--text-muted); }
-
-/* CARDS E COMPONENTES BÁSICOS */
-.card-base { background-color: var(--bg-card); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); padding: 1.5rem; box-shadow: 0 4px 6px rgba(15,54,34,0.02); }
-.card-title { font-size: 1.15rem; font-weight: 800; color: var(--brand-green-dark); }
-.card-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem; margin-bottom: 1.5rem; }
-.tech-tag { font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; }
-.tech-tag.tag-vibrante { background-color: rgba(124, 179, 66, 0.15); color: var(--brand-green-mid); }
-
-/* ELEMENTOS DO SIMULADOR LOGICO */
-.dashboard-grid-widgets { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; }
-.card-span-2 { grid-column: span 1; }
-.sim-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
-.sim-title { font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark); }
-.sim-desc { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; }
-.sim-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.5rem; }
-.form-control-group { display: flex; flex-direction: column; gap: 0.4rem; }
-.control-label { font-size: 0.8rem; font-weight: 700; color: var(--brand-green-dark); }
-.form-select { background-color: var(--bg-canvas); border: 1px solid var(--ui-border); padding: 0.65rem; border-radius: 6px; font-family: inherit; font-size: 0.8rem; font-weight: 500; color: var(--text-main); outline: none; transition: 0.2s; }
-.form-select:focus { border-color: var(--brand-green-light); background-color: #ffffff; }
-
-.sim-result-container { display: flex; align-items: center; gap: 1.5rem; background-color: var(--bg-canvas); padding: 1.2rem; border-radius: 8px; border: 1px solid var(--ui-border); }
-.result-gauge-box { width: 80px; height: 16px; background-color: var(--ui-border); border-radius: 20px; position: relative; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-.gauge-bar { position: absolute; left: 0; top: 0; height: 100%; background-color: var(--brand-green-mid); transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-.gauge-text { position: relative; font-size: 0.75rem; font-weight: 800; color: var(--brand-green-dark); z-index: 2; }
-.feedback-heading { font-size: 0.95rem; font-weight: 800; color: var(--brand-green-dark); }
-.feedback-paragraph { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.15rem; line-height: 1.4; }
-
-/* SEÇÃO DE DIAGNÓSTICOS */
-.flex-column-layout { display: flex; flex-direction: column; }
-.diagnostic-indicator-row { display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 8px; border: 1px solid var(--ui-border); margin-bottom: 0.8rem; }
-.diagnostic-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.9rem; font-weight: bold; flex-shrink: 0; }
-.bg-soft-red { background-color: #fef2f2; color: #ef4444; }
-.bg-soft-orange { background-color: #fff7ed; color: #f97316; }
-.bg-soft-green { background-color: #f0fdf4; color: #22c55e; }
-.diagnostic-name { font-size: 0.85rem; font-weight: 700; color: var(--brand-green-dark); }
-.diagnostic-status { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); display: block; margin-top: 0.1rem; }
-
-/* GRADES E CARDS DA ABA AGROECOLOGIA */
-.agro-grid-complet { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
-.agro-card-extended { background-color: var(--bg-card); border: 1px solid var(--ui-border); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
-.agro-card-extended:hover { transform: translateY(-4px); border-color: var(--brand-green-light); box-shadow: 0 10px 20px rgba(15, 54, 34, 0.08); }
-.agro-img-placeholder { height: 80px; background-color: #e8efe9; position: relative; }
-.agro-img-placeholder::after { position: absolute; left: 1rem; bottom: -12px; font-size: 1.4rem; padding: 0.2rem; border-radius: 6px; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-
-.img-rotacao::after { content: "🔄"; }
-.img-adubacao::after { content: "🌿"; }
-.img-mip::after { content: "🐞"; }
-.img-safs::after { content: "🌳"; }
-.img-agua::after { content: "💧"; }
-.img-curvas::after { content: "⛰️"; }
-
-.agro-card-content { padding: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; flex-grow: 1; margin-top: 0.4rem; }
-.agro-card-content h4 { font-size: 0.95rem; font-weight: 800; color: var(--brand-green-dark); }
-.agro-card-content p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; flex-grow: 1; }
-.agro-card-content .tech-tag { align-self: flex-start; background-color: var(--bg-canvas); color: var(--brand-green-dark); font-size: 0.65rem; border: 1px solid var(--ui-border); }
-
-/* OUTRAS ABAS INFORMATIVAS */
-.informational-rich-container { background-color: #f8fafc; border-left: 4px solid var(--brand-green-mid); padding: 1.2rem; border-radius: 4px; font-size: 0.85rem; line-height: 1.6; color: var(--text-main); }
-.materials-grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-.material-download-box { border: 1px solid var(--ui-border); padding: 1.2rem; border-radius: 8px; display: flex; flex-direction: column; gap: 0.4rem; cursor: default; }
-.material-format-badge { font-size: 0.65rem; font-weight: 800; background-color: var(--brand-green-dark); color: white; padding: 0.15rem 0.4rem; border-radius: 3px; align-self: flex-start; }
-.material-download-box h5 { font-size: 0.9rem; font-weight: 700; color: var(--brand-green-dark); }
-.material-download-box p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
-
-/* SISTEMA E LAYOUT DO QUIZ INTERATIVO */
-.quiz-header-wrapper { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--ui-border); padding-bottom: 0.8rem; margin-bottom: 1.2rem; }
-.quiz-counter { font-size: 0.8rem; font-weight: 700; background-color: var(--brand-green-dark); color: white; padding: 0.3rem 0.6rem; border-radius: 4px; }
-.quiz-question-heading { font-size: 1rem; font-weight: 700; color: var(--brand-green-dark); margin-bottom: 1rem; }
-.quiz-options-vertical-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
-.quiz-opt-btn { background-color: var(--bg-canvas); border: 1px solid var(--ui-border); text-align: left; padding: 0.8rem 1rem; border-radius: 6px; font-family: inherit; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: 0.2s; }
-.quiz-opt-btn:hover { border-color: var(--brand-green-light); background-color: #ffffff; }
-.quiz-opt-btn.correct-ans { background-color: #f0fdf4 !important; border-color: #22c55e !important; color: #14532d !important; font-weight: 700; }
-.quiz-opt-btn.wrong-ans { background-color: #fef2f2 !important; border-color: #ef4444 !important; color: #7f1d1d !important; }
-.quiz-hint-box { font-size: 0.8rem; color: var(--brand-green-mid); background-color: rgba(124,179,66,0.08); padding: 0.8rem; border-radius: 6px; border-left: 3px solid var(--brand-green-light); font-weight: 500; display: none; }
-
-/* ESTILOS ESPECÍFICOS DO NOVO JOGO DA MEMÓRIA */
-.carta-memoria {
-    height: 95px;
-    background: var(--brand-green-dark);
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    color: transparent;
-    transition: transform 0.3s, background-color 0.3s;
-    user-select: none;
-    border: 2px solid #ffffff;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.03);
-}
-.carta-memoria.virada {
-    background: #ffffff;
-    color: initial;
-    transform: rotateY(180deg);
-    border-color: var(--brand-green-light);
-}
-.carta-memoria.combinada {
-    background: #f0fdf4;
-    color: initial;
-    border-color: var(--brand-lime);
-    cursor: default;
-    transform: scale(0.95);
-    opacity: 0.85;
+// 1. LÓGICA DO SIMULADOR ORIGINAL (PAINEL INICIAL)
+function calcularSustentabilidade(e) {
+    e.preventDefault();
+    const cob = parseFloat(document.getElementById('cobertura').value);
+    const div = parseInt(document.getElementById('diversidade').value);
+    const qui = document.getElementById('quimicos').value;
+    
+    let score = 0;
+    if (cob >= 70) score += 35;
+    else if (cob >= 40) score += 20;
+    else score += 5;
+    
+    if (div >= 4) score += 35;
+    else if (div >= 2) score += 20;
+    else score += 5;
+    
+    if (qui === 'nenhum') score += 30;
+    else if (qui === 'medio') score += 15;
+    else score += 0;
+    
+    const container = document.getElementById('resultado-simulador');
+    container.classList.remove('hidden');
+    
+    if (score >= 80) {
+        container.className = "resultado-box excelente";
+        container.innerHTML = `<strong>✨ Índice de Sustentabilidade: ${score}% (Excelente)</strong><br>A propriedade adota manejos ideais, garantindo a conservação do solo, diversidade biológica e proteção dos recursos hídricos regionais.`;
+    } else if (score >= 50) {
+        container.className = "resultado-box regular";
+        container.innerHTML = `<strong>🌿 Índice de Sustentabilidade: ${score}% (Regular)</strong><br>Bons passos foram dados. Recomenda-se aumentar a variedade de plantas de cobertura e reduzir gradualmente os insumos industriais.`;
+    } else {
+        container.className = "resultado-box critico";
+        container.innerHTML = `<strong>⚠️ Índice de Sustentabilidade: ${score}% (Alerta Crítico)</strong><br>Risco severo de degradação estrutural e erosão do solo. É urgente implementar curvas de nível e adubação verde imediatamente.`;
+    }
 }
 
-/* GAMIFICAÇÃO E MEDALHAS */
-.gamification-status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.gamification-badge-node { border: 1px solid var(--ui-border); padding: 1.5rem; border-radius: 8px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
-.badge-icon { font-size: 2.2rem; filter: grayscale(1); opacity: 0.3; transition: 0.3s; }
-.badge-icon.unlocked { filter: grayscale(0); opacity: 1; animation: popAward 0.4s ease-out; }
-.gamification-badge-node h5 { font-size: 0.9rem; font-weight: 800; color: var(--brand-green-dark); }
-.badge-status-label { font-size: 0.65rem; font-weight: 800; background-color: var(--bg-canvas); border: 1px solid var(--ui-border); padding: 0.15rem 0.5rem; border-radius: 10px; color: var(--text-muted); }
-.gamification-badge-node.achieved .badge-status-label { background-color: #f0fdf4; border-color: var(--brand-lime); color: var(--brand-green-mid); }
+// 2. LÓGICA DO POPUP INTERATIVO (AGROECOLOGIA)
+const bancoPopups = {
+    rotacao: {
+        t: "🔄 Rotação de Culturas e Cobertura",
+        d: "Prática baseada no plantio alternado e planejado de diferentes vegetações ao longo das safras na mesma área geográfica. Evita que o solo sofra exaustão por extração repetitiva dos mesmos micronutrientes.",
+        b: ["Interrompe o ciclo biológico reprodutivo de pragas e nematoides", "Melhora significativamente a macroestrutura física do solo através de diferentes sistemas radiculares", "Fornece palhada abundante para conservação de umidade"],
+        p: "Milho intercalado com soja, sucedido por Plantas de Cobertura (Braquiária, Milheto, Crotalária e Nabo Forrageiro)."
+    },
+    adubacao: {
+        t: "🌱 Adubação Verde e Cobertura Viva",
+        d: "Utilização estratégica de plantas cultivadas, principalmente leguminosas, que realizam simbiose natural com bactérias fixadoras para capturar o nitrogênio presente na atmosfera e injetá-lo diretamente na terra.",
+        b: ["Fixação biológica de Nitrogênio puro a custo zero", "Proteção mecânica contra o impacto direto das gotas de chuva (evita selamento superficial)", "Aumento expressivo no teor de matéria orgânica a longo prazo"],
+        p: "Semeadura direta de Crotalária ou Feijão-de-porco nas janelas de entressafras."
+    },
+    mip: {
+        t: "🐞 MIP - Manejo Integrado de Pragas",
+        d: "Conjunto ecológico de tomada de decisões que monitora as populações de pragas econômicas. Só autoriza intervenção direta quando os danos ultrapassam o custo do controle, priorizando os inimigos naturais e bioinseticidas.",
+        b: ["Redução drástica no custo de aquisição de defensivos químicos sintéticos", "Preservação de predadores benéficos (como joaninhas e tesourinhas)", "Reduz riscos de intoxicação na comunidade escolar e familiar"],
+        p: "Uso de armadilhas biológicas de feromônios e liberação assistida de microvespas parasitoides."
+    },
+    safs: {
+        t: "🌳 Sistemas Agroflorestais (SAFs)",
+        d: "Abordagem produtiva pioneira que mimetiza a arquitetura e a dinâmica biológica de uma floresta nativa, integrando no mesmo arranjo árvores altas, frutíferas, culturas anuais e/ou criação animal.",
+        b: ["Ciclagem profunda de nutrientes capturados por raízes arbóreas", "Múltiplas fontes de renda na mesma área (madeira, frutas e grãos)", "Criação de microclimas amenos que protegem as plantas contra secas severas"],
+        p: "Consórcio de linhas de eucalipto ou árvores nativas com faixas produtivas de café, milho ou pastagens."
+    },
+    nascentes: {
+        t: "💧 Recuperação e Proteção de Nascentes",
+        d: "Intervenção mecânica imediata nas Áreas de Preservação Permanente (APPs) para blindar os olhos d'água contra fontes de contaminação e compactação severas causadas pelo livre trânsito de animais de grande porte.",
+        b: ["Garantia de vazão contínua e pureza física da água consumida", "Retorno natural da vegetação ciliar nativa no entorno imediato", "Evita o assoreamento de córregos e riachos da microbacia"],
+        p: "Instalação de cercas rígidas num raio mínimo de 50 metros e plantio manual de mudas nativas da região."
+    },
+    curvas: {
+        t: "🚜 Curvas de Nível e Terraceamento",
+        d: "Técnicas milenares de engenharia rústica que consistem em identificar as linhas de mesma altitude em encostas e construir barreiras ou degraus para quebrar a força gravitacional de descida das enxurradas.",
+        b: ["Retém a água na lavoura, forçando sua infiltração lenta no lençol freático", "Impede o arraste da camada fértil superficial do solo", "Elimina de forma absoluta a formação de voçorocas e sulcos erosivos"],
+        p: "Marcação de terrenos inclinados com pé-de-galinha ou nível de mangueira para construção de terraços de retenção."
+    }
+};
 
-.stats-summary-strip { display: flex; border: 1px solid var(--ui-border); border-radius: 8px; background-color: var(--bg-canvas); overflow: hidden; }
-.strip-item { flex-grow: 1; text-align: center; padding: 1rem; border-right: 1px solid var(--ui-border); }
-.strip-item:last-child { border-right: none; }
-.strip-value { display: block; font-size: 1.3rem; font-weight: 800; color: var(--brand-green-dark); }
-.strip-label { display: block; font-size: 0.7rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; margin-top: 0.15rem; }
-
-/* MODAL DE DETALHAMENTO DO INFOGRÁFICO */
-.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 54, 34, 0.75); display: flex; align-items: center; justify-content: center; z-index: 9999; backdrop-filter: blur(4px); padding: 1rem; }
-.infografico-container { background: var(--bg-card); width: 100%; max-width: 780px; border-radius: var(--ui-radius); border: 2px solid var(--brand-green-light); box-shadow: 0 20px 40px rgba(0,0,0,0.15); overflow: hidden; display: flex; flex-direction: column; max-height: 90vh; }
-.info-header-popup { background: var(--brand-green-dark); padding: 1.2rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--brand-lime); }
-.btn-fechar-popup { background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.4rem; font-weight: bold; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
-.btn-fechar-popup:hover { background: rgba(255,255,255,0.25); }
-.info-scroll-body { padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1.2rem; }
-.info-layout-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.info-block-col { background: #f8fafc; padding: 1rem; border-radius: 10px; }
-.info-banner-tags { background: #f0fdf4; border: 1px dashed var(--brand-green-light); padding: 1rem; border-radius: 10px; }
-.popup-tag-tecnica { background: #ffffff; color: var(--brand-green-dark); padding: 0.35rem 0.7rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: 1px solid var(--brand-green-light); }
-.info-popup-badges-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; border-top: 1px solid var(--ui-border); padding-top: 1.2rem; text-align: center; }
-.badge-popup-item { background: rgba(28, 89, 54, 0.04); padding: 0.5rem; border-radius: 6px; }
-.badge-popup-item p { font-size: 0.65rem; font-weight: 800; color: var(--brand-green-dark); text-transform: uppercase; margin-top: 0.2rem; }
-
-/* CONTROLE DE EXIBIÇÃO E TRANSICÕES UTILITY */
-.view-pane { display: none; }
-.view-pane.active { display: block; }
-.hidden { display: none !important; }
-
-/* ANIMAÇÕES DO SISTEMA */
-@keyframes popAward { 0% { transform: scale(0.5); } 80% { transform: scale(1.1); } 100% { transform: scale(1); } }
-
-/* DIRETRIZES DE RESPONSIVIDADE */
-@media (max-width: 1024px) {
-    .app-layout { flex-direction: column; }
-    .sidebar-container { width: 100%; padding: 1rem; }
-    .main-viewport { max-width: 100%; padding: 1.5rem; }
-    .nav-list { flex-direction: row; flex-wrap: wrap; }
-    .dashboard-grid-widgets { grid-template-columns: 1fr; }
-    .agro-grid-complet { grid-template-columns: 1fr 1fr; }
+function abrirPopup(id) {
+    const dados = bancoPopups[id];
+    if (!dados) return;
+    
+    let listaBen = "";
+    dados.b.forEach(b => { listaBen += `<li><i class="fa-solid fa-circle-check"></i> ${b}</li>`; });
+    
+    const html = `
+        <div class="info-popup-header">
+            <h2>${dados.t}</h2>
+        </div>
+        <div class="info-desc-destaque">${dados.d}</div>
+        <div class="info-bloco-colunas">
+            <div class="col-beneficios">
+                <h4><i class="fa-solid fa-star"></i> Principais Benefícios:</h4>
+                <ul>${listaBen}</ul>
+            </div>
+            <div class="col-pratica">
+                <h4><i class="fa-solid fa-gears"></i> Aplicação Prática Local:</h4>
+                <p>${dados.p}</p>
+                <div style="margin-top:16px; font-size:0.75rem; font-weight:bold; color:var(--primary-color)">Solo protegido = Mais produtividade sustentável.</div>
+            </div>
+        </div>
+    `;
+    
+    document.getElementById('modal-injector-content').innerHTML = html;
+    document.getElementById('info-modal-popup').classList.remove('hidden');
 }
 
-@media (max-width: 640px) {
-    .nav-btn { font-size: 0.8rem; padding: 0.6rem; }
-    .sim-form-grid { grid-template-columns: 1fr; }
-    .agro-grid-complet { grid-template-columns: 1fr; }
-    .info-layout-columns { grid-template-columns: 1fr; gap: 1rem; }
-    .materials-grid-layout { grid-template-columns: 1fr; }
-    .grid-jogo-memoria { grid-template-columns: repeat(3, 1fr) !important; }
+function fecharPopup() {
+    document.getElementById('info-modal-popup').classList.add('hidden');
 }
+function fecharPopupExterna(e) {
+    if (e.target.id === 'info-modal-popup') fecharPopup();
+}
+
+// 3. LÓGICA DO QUIZ EXPANDIDO (30 PERGUNTAS / 3 NÍVEIS)
+const bancoPerguntas = {
+    facil: [
+        { q: "Qual o principal objetivo da rotação de culturas?", o: ["Desgastar o solo mais rápido", "Quebrar ciclos de pragas e doenças", "Usar apenas um tipo de adubo", "Aumentar o uso de químicos"], a: 1 },
+        { q: "O que é adubação verde?", o: ["Pintar as plantas de verde", "Uso de plantas específicas para melhorar o solo", "Aplicar fertilizante sintético", "Irrigar com água tratada"], a: 1 },
+        { q: "Qual inseto é um predador natural famoso no controle biológico (MIP)?", o: ["Lagarta-do-cartucho", "Joaninha", "Gafanhoto", "Cochonilha"], a: 1 },
+        { q: "As curvas de nível servem principalmente para evitar o quê?", o: ["A erosão provocada pelas chuvas", "O crescimento das plantas", "A presença de pássaros", "O vento excessivo"], a: 0 },
+        { q: "O que significa a sigla SAFs?", o: ["Sistemas Agroflorestais", "Sistemas de Adubação Forte", "Sindicato de Agricultores", "Sustentabilidade Agrícola"], a: 0 },
+        { q: "Qual a distância mínima recomendada para proteger uma nascente?", o: ["5 metros", "10 metros", "50 metros", "2 metros"], a: 2 },
+        { q: "A palhada deixada sobre o solo ajuda a manter o quê?", o: ["O solo seco", "A umidade e a temperatura adequadas", "As pragas escondidas", "O solo compactado"], a: 1 },
+        { q: "As plantas leguminosas ajudam a fixar qual elemento no solo?", o: ["Oxigênio", "Nitrogênio", "Ferro", "Cálcio"], a: 1 },
+        { q: "O que o gado NÃO deve fazer na área de uma nascente protegida?", o: ["Ficar longe da cerca", "Pisotear e sujar a água", "Beber água fora da APP", "Sombra em árvores distantes"], a: 1 },
+        { q: "A agroecologia busca imitar o funcionamento de qual sistema?", o: ["Uma fábrica industrial", "A própria natureza", "Um laboratório químico", "Uma cidade urbana"], a: 1 }
+    ],
+    medio: [
+        { q: "No plantio consorciado de milho e soja, qual a vantagem da soja?", o: ["Fornecer sombra ao milho", "Fixar nitrogênio para o sistema", "Competir por água", "Substituir a colheita do milho"], a: 1 },
+        { q: "O que caracteriza o Manejo Integrado de Pragas (MIP)?", o: ["Eliminar insetos antes de surgirem", "Monitorar a lavoura e usar o controle biológico antes do químico", "Aplicar defensivos semanalmente", "Ignorar as pragas da época"], a: 1 },
+        { q: "Em terrenos muito inclinados (morros), qual a técnica mecânica ideal?", o: ["Plantio morro abaixo", "Queima dos resíduos", "Curvas de nível e terraceamento", "Desmatamento total"], a: 2 },
+        { q: "Qual planta é muito utilizada como adubo verde no Paraná?", o: ["Eucalipto", "Crotalária ou Nabo Forrageiro", "Pinus", "Samambaia"], a: 1 },
+        { q: "O que é uma APP na legislação ambiental brasileira?", o: ["Área de Produção Pesada", "Área de Preservação Permanente", "Associação de Produtores", "Atividade Agrícola Particular"], a: 1 },
+        { q: "Os SAFs combinam quais elementos no mesmo espaço?", o: ["Apenas soja e milho", "Árvores, cultivos agrícolas e/ou animais", "Prédios e estufas", "Tratores e implementos"], a: 1 },
+        { q: "O que causa a voçoroca no solo desprotegido?", o: ["Falta de sementes", "Erosão severa pela força da enxurrada", "Excesso de minhocas", "Uso de adubo orgânico"], a: 1 },
+        { q: "Por que a diversificação melhora a segurança econômica do produtor?", o: ["Reduz as fontes de renda", "Depende de um único preço", "Gera múltiplas fontes de renda e reduz riscos", "Aumenta o custo com maquinário"], a: 2 },
+        { q: "O que analisa o monitoramento do nível de dano econômico no MIP?", o: ["A quantidade no estoque", "Se o prejuízo da praga é maior que o custo de controle", "O preço do frete do grão", "A previsão do tempo"], a: 1 },
+        { q: "Qual a função do cercamento nas nascentes?", o: ["Impedir o crescimento de árvores", "Evitar a entrada e pisotio de animais que destroem a fonte", "Enfeitar a propriedade", "Esconder a água"], a: 1 }
+    ],
+    dificil: [
+        { q: "Como ocorre a quebra de ciclos de pragas na rotação de culturas?", o: ["As pragas ficam sem o hospedeiro específico e morrem", "O veneno dura mais tempo", "O solo impede a locomoção", "As plantas crescem mais rápido"], a: 0 },
+        { q: "Quais são as estruturas nas raízes das leguminosas que realizam a fixação biológica?", o: ["Cloroplastos foliares", "Nódulos formados por bactérias Rhizobium", "Micorrizas superficiais", "Estômatos radiculares"], a: 1 },
+        { q: "Qual a definição ecológica de resiliência sistêmica nos SAFs?", o: ["Capacidade do sistema resistir e se recuperar devido à alta biodiversidade", "Necessidade de irrigação constante", "Dependência extrema de fertilização", "Uniformidade genética"], a: 0 },
+        { q: "No MIP, por que o uso indiscriminado de inseticidas de amplo espectro é prejudicial?", o: ["Elimina os inimigos naturais, gerando surtos secundários", "Deixa as folhas muito verdes", "Aumenta a população de minhocas", "Altera o pH da água"], a: 0 },
+        { q: "Como o terraceamento mecânico altera a energia da enxurrada?", o: ["Aumenta a velocidade de descida", "Fraciona o comprimento da rampa, reduzindo velocidade e ampliando infiltração", "Direciona a água direto para as estradas", "Evapora a água instantaneamente"], a: 1 },
+        { q: "Qual o papel das plantas de cobertura de raízes profundas na ciclagem?", o: ["Extrair água para a superfície e secar o lençol", "Recuperar nutrientes lixiviados nas camadas profundas e depositá-los na superfície", "Compactar o subsolo", "Bloquear a entrada de ar"], a: 1 },
+        { q: "O que caracteriza a transição agroecológica numa propriedade?", o: ["Substituição imediata sem planejamento", "Processo gradual de redesenho, diminuindo insumos e ampliando autonomia", "Abandono por falta de lucro", "Uso exclusivo de transgênicos"], a: 1 },
+        { q: "Como a palhada atua na proteção do solo contra o impacto inicial da chuva?", o: ["Absorve a energia cinética das gotas, evitando o selamento superficial", "Alimenta os pássaros", "Impede o nascimento de qualquer planta", "Acelera a evaporação"], a: 0 },
+        { q: "O que é o controle etológico no âmbito do MIP?", o: ["Uso de tratores maiores", "Uso de armadilhas baseadas no comportamento das pragas (feromônios)", "Uso de fungos nas folhas", "Destruição manual de ninhos"], a: 1 },
+        { q: "Qual o benefício a longo prazo do aumento da matéria orgânica via agroecologia?", o: ["Aumento da CTC do solo, retenção de água e estabilidade estrutural", "Acidificação extrema da terra", "Necessidade de maior calagem", "Redução da atividade biológica"], a: 0 }
+    ]
+};
+
+let quizNivelAtual = 'facil';
+let quizIndiceAtual = 0;
+
+function selecionarNivelQuiz(nivel) {
+    quizNivelAtual = nivel;
+    quizIndiceAtual = 0;
+    document.querySelectorAll('.lvl-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(`lvl-${nivel}`).classList.add('active');
+    renderizarPerguntaQuiz();
+}
+
+function renderizarPerguntaQuiz() {
+    const lista = bancoPerguntas[quizNivelAtual];
+    const item = lista[quizIndiceAtual];
+    
+    document.getElementById('quiz-tracker').innerText = `Pergunta ${quizIndiceAtual + 1} de ${lista.length}`;
+    document.getElementById('quiz-bar-fill').style.width = `${((quizIndiceAtual + 1) / lista.length) * 100}%`;
+    document.getElementById('quiz-question-text').innerText = item.q;
+    
+    const grid = document.getElementById('quiz-options-block');
+    grid.innerHTML = "";
+    
+    item.o.forEach((opcao, idx) => {
+        const row = document.createElement('button');
+        row.className = "quiz-opt-row";
+        row.innerHTML = `<span class="opt-index">${String.fromCharCode(65 + idx)}</span> <span class="opt-txt-val">${opcao}</span>`;
+        row.onclick = () => checarRespostaQuiz(idx, row);
+        grid.appendChild(row);
+    });
+    
+    document.getElementById('quiz-next-btn').disabled = true;
+    document.getElementById('quiz-feedback-box').className = "quiz-feedback-msg hidden";
+}
+
+function checarRespostaQuiz(idxSel, elementoClicado) {
+    const item = bancoPerguntas[quizNivelAtual][quizIndiceAtual];
+    const linhas = document.querySelectorAll('.quiz-opt-row');
+    
+    linhas.forEach(l => l.disabled = true);
+    const feedback = document.getElementById('quiz-feedback-box');
+    feedback.classList.remove('hidden');
+    
+    if (idxSel === item.a) {
+        elementoClicado.classList.add('correct-ans');
+        feedback.className = "quiz-feedback-msg ok";
+        feedback.innerHTML = "<i class='fa-solid fa-check'></i> Resposta Correta! Ótimo avanço técnico.";
+    } else {
+        elementoClicado.classList.add('wrong-ans');
+        linhas[item.a].classList.add('correct-ans');
+        feedback.className = "quiz-feedback-msg err";
+        feedback.innerHTML = `<i class='fa-solid fa-xmark'></i> Incorreto. A correta era a Alternativa ${String.fromCharCode(65 + item.a)}.`;
+    }
+    document.getElementById('quiz-next-btn').disabled = false;
+}
+
+function passarPerguntaQuiz() {
+    quizIndiceAtual++;
+    const lista = bancoPerguntas[quizNivelAtual];
+    if (quizIndiceAtual < lista.length) {
+        renderizarPerguntaQuiz();
+    } else {
+        document.getElementById('quiz-tracker').innerText = "Etapa Finalizada!";
+        document.getElementById('quiz-question-text').innerText = "Módulo de capacitação técnica executado com sucesso!";
+        document.getElementById('quiz-options-block').innerHTML = "<p style='padding:16px; color:var(--text-muted); font-size:0.9rem;'>Parabéns por exercitar a lógica rústica. Avance para as demais dificuldades clicando nos seletores superiores.</p>";
+        document.getElementById('quiz-next-btn').disabled = true;
+        document.getElementById('quiz-feedback-box').className = "quiz-feedback-msg hidden";
+    }
+}
+
+// 4. LÓGICA DE MATERIAIS DE APOIO (PDF + VÍDEO SEGURO)
+function gerenciarVisualizacaoMidia(tipo) {
+    const zona = document.getElementById('media-display-zone');
+    const titulo = document.getElementById('media-zone-title');
+    const target = document.getElementById('media-frame-target');
+    
+    zona.classList.remove('hidden');
+    target.innerHTML = "";
+    
+    if (tipo === 'pdf') {
+        titulo.innerHTML = "<i class='fa-solid fa-file-pdf' style='color:#d62828'></i> Guia Técnico Integrado (Embrapa)";
+        // Substitua pelo link real do PDF público desejado
+        target.innerHTML = `<iframe src="https://cloud.embrapa.br/index.php/s/7Zgq6N9y6p8mZ4E/download" class="embedded-frame"></iframe>`;
+    } else if (tipo === 'video') {
+        titulo.innerHTML = "<i class='fa-solid fa-play' style='color:#0077b6'></i> Videoaula Prática Escolar";
+        // Substitua 'dQw4w9WgXcQ' pelo ID real do seu vídeo do YouTube
+        target.innerHTML = `<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" class="embedded-frame" allowfullscreen frameborder="0"></iframe>`;
+    }
+    zona.scrollIntoView({ behavior: 'smooth' });
+}
+
+function fecharZonaMidia() {
+    document.getElementById('media-display-zone').classList.add('hidden');
+    document.getElementById('media-frame-target').innerHTML = ""; // Pausa mídias ativas
+}
+
+// 5. JOGO DA MEMÓRIA AGROECOLÓGICA NATIVO
+const itensMemoria = [
+    { n: "Rotação", e: "🔄" }, { n: "Rotação", e: "🔄" },
+    { n: "MIP", e: "🐞" }, { n: "MIP", e: "🐞" },
+    { n: "SAFs", e: "🌳" }, { n: "SAFs", e: "🌳" },
+    { n: "Nascentes", e: "💧" }, { n: "Nascentes", e: "💧" },
+    { n: "Curvas de Nível", e: "🚜" }, { n: "Curvas de Nível", e: "🚜" },
+    { n: "Adubação", e: "🌱" }, { n: "Adubação", e: "🌱" }
+];
+
+let cartasViradas = [];
+let jogadasJogo = 0;
+let segundosJogo = 0;
+let cronometroJogo = null;
+let jogoIniciado = false;
+
+function iniciarCronometroMemoria() {
+    if (jogoIniciado) return;
+    jogoIniciado = true;
+    segundosJogo = 0;
+    cronometroJogo = setInterval(() => {
+        segundosJogo++;
+        const min = String(Math.floor(segundosJogo / 60)).padStart(2, '0');
+        const seg = String(segundosJogo % 60).padStart(2, '0');
+        document.getElementById('game-timer').innerText = `${min}:${seg}`;
+    }, 1000);
+}
+
+function reiniciarJogoMemoria() {
+    clearInterval(cronometroJogo);
+    jogoIniciado = false;
+    jogadasJogo = 0;
+    cartasViradas = [];
+    document.getElementById('game-timer').innerText = "00:00";
+    document.getElementById('game-moves').innerText = "0";
+    
+    // Embaralhamento nativo (Fisher-Yates)
+    const dados = [...itensMemoria];
+    for (let i = dados.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [dados[i], dados[j]] = [dados[j], dados[i]];
+    }
+    
+    const board = document.getElementById('memory-grid-board');
+    board.innerHTML = "";
+    
+    dados.forEach((item) => {
+        const card = document.createElement('div');
+        card.className = "memory-card";
+        card.innerHTML = `
+            <div class="card-back">?</div>
+            <div class="card-front"><span>${item.e}</span>${item.n}</div>
+        `;
+        card.onclick = () => virarCartaMemoria(card, item);
+        board.appendChild(card);
+    });
+}
+
+function virarCartaMemoria(cardElement, itemDado) {
+    if (cardElement.classList.contains('flipped') || cardElement.classList.contains('matched') || cartasViradas.length >= 2) return;
+    
+    iniciarCronometroMemoria();
+    cardElement.classList.add('flipped');
+    cartasViradas.push({ el: cardElement, d: itemDado });
+    
+    if (cartasViradas.length === 2) {
+        jogadasJogo++;
+        document.getElementById('game-moves').innerText = jogadasJogo;
+        
+        if (cartasViradas[0].d.n === cartasViradas[1].d.n) {
+            cartasViradas[0].el.classList.add('matched');
+            cartasViradas[1].el.classList.add('matched');
+            cartasViradas = [];
+            
+            // Valida critério de vitória total
+            if (document.querySelectorAll('.memory-card.matched').length === itensMemoria.length) {
+                clearInterval(cronometroJogo);
+                setTimeout(() => { alert(`🎉 Vitória Agroecológica! Concluído em ${jogadasJogo} jogadas.`); }, 400);
+            }
+        } else {
+            setTimeout(() => {
+                cartasViradas[0].el.classList.remove('flipped');
+                cartasViradas[1].el.classList.remove('flipped');
+                cartasViradas = [];
+            }, 1000);
+        }
+    }
+}
+
+// INICIALIZADOR AUTOMÁTICO
+document.addEventListener("DOMContentLoaded", () => {
+    if(document.getElementById('quiz-question-text')) renderizarPerguntaQuiz();
+});
