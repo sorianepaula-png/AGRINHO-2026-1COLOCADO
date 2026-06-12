@@ -1,0 +1,208 @@
+:root {
+    --brand-green-dark: #0f3622;
+    --brand-green-mid: #1c5936;
+    --brand-green-light: #7cb342;
+    --brand-lime: #a3e635;
+    --brand-lime-hover: #baf255;
+    --bg-canvas: #f4f7f5;
+    --bg-card: #ffffff;
+    --text-main: #14241c;
+    --text-muted: #5c7066;
+    --ui-border: #e2e9e5;
+    --ui-radius: 12px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-canvas); color: var(--text-main); overflow-x: hidden; }
+
+/* CONFIGURAÇÃO DO LAYOUT DA INTERFACE */
+.app-layout { display: flex; min-height: 100vh; }
+.sidebar-container { width: 280px; background-color: var(--brand-green-dark); padding: 2rem 1.5rem; display: flex; flex-direction: column; flex-shrink: 0; }
+.main-viewport { flex-grow: 1; padding: 2rem 2.5rem; display: flex; flex-direction: column; gap: 2rem; max-width: calc(100% - 280px); }
+
+/* MARCA E SISTEMA DE NAVEGAÇÃO */
+.brand-wrapper { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2.5rem; }
+.brand-avatar { font-size: 2rem; background-color: rgba(255,255,255,0.1); width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
+.brand-title { color: #ffffff; font-size: 1.2rem; font-weight: 800; }
+.brand-subtitle { color: var(--brand-lime); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.nav-list { display: flex; flex-direction: column; gap: 0.4rem; flex-grow: 1; }
+.nav-btn { background: none; border: none; text-align: left; padding: 0.85rem 1rem; border-radius: 8px; color: #a1b5aa; font-size: 0.9rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.8rem; transition: 0.2s; }
+.nav-btn:hover { background-color: rgba(255,255,255,0.05); color: #ffffff; }
+.nav-btn.active { background-color: var(--brand-green-mid); color: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+.sidebar-alert-box { background-color: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 1.2rem; border-radius: 10px; margin-top: auto; }
+.alert-box-title { color: #ffffff; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 0.3rem; }
+.alert-box-desc { color: #a1b5aa; font-size: 0.75rem; line-height: 1.4; margin-bottom: 0.8rem; }
+.alert-box-action { background-color: var(--brand-lime); color: var(--brand-green-dark); border: none; font-weight: 700; width: 100%; padding: 0.5rem; border-radius: 6px; font-size: 0.75rem; cursor: default; }
+
+/* CABEÇALHO DA VIEWPORT */
+.header-viewport { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--ui-border); padding-bottom: 1.5rem; }
+.welcome-title { font-size: 1.5rem; font-weight: 800; color: var(--brand-green-dark); letter-spacing: -0.5px; }
+.welcome-subtitle { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem; }
+.profile-badge { display: flex; align-items: center; gap: 0.8rem; background-color: var(--bg-card); padding: 0.5rem 1rem; border-radius: 30px; border: 1px solid var(--ui-border); }
+.profile-avatar { font-size: 1.4rem; }
+.profile-name { display: block; font-size: 0.8rem; font-weight: 700; color: var(--brand-green-dark); }
+.profile-role { display: block; font-size: 0.7rem; color: var(--text-muted); }
+
+/* CARDS E COMPONENTES BÁSICOS */
+.card-base { background-color: var(--bg-card); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); padding: 1.5rem; box-shadow: 0 4px 6px rgba(15,54,34,0.02); }
+.card-title { font-size: 1.15rem; font-weight: 800; color: var(--brand-green-dark); }
+.card-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem; margin-bottom: 1.5rem; }
+.tech-tag { font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; }
+.tech-tag.tag-vibrante { background-color: rgba(124, 179, 66, 0.15); color: var(--brand-green-mid); }
+
+/* ELEMENTOS DO SIMULADOR LOGICO */
+.dashboard-grid-widgets { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; }
+.card-span-2 { grid-column: span 1; }
+.sim-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+.sim-title { font-size: 1.1rem; font-weight: 800; color: var(--brand-green-dark); }
+.sim-desc { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; }
+.sim-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.5rem; }
+.form-control-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.control-label { font-size: 0.8rem; font-weight: 700; color: var(--brand-green-dark); }
+.form-select { background-color: var(--bg-canvas); border: 1px solid var(--ui-border); padding: 0.65rem; border-radius: 6px; font-family: inherit; font-size: 0.8rem; font-weight: 500; color: var(--text-main); outline: none; transition: 0.2s; }
+.form-select:focus { border-color: var(--brand-green-light); background-color: #ffffff; }
+
+.sim-result-container { display: flex; align-items: center; gap: 1.5rem; background-color: var(--bg-canvas); padding: 1.2rem; border-radius: 8px; border: 1px solid var(--ui-border); }
+.result-gauge-box { width: 80px; height: 16px; background-color: var(--ui-border); border-radius: 20px; position: relative; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.gauge-bar { position: absolute; left: 0; top: 0; height: 100%; background-color: var(--brand-green-mid); transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+.gauge-text { position: relative; font-size: 0.75rem; font-weight: 800; color: var(--brand-green-dark); z-index: 2; }
+.feedback-heading { font-size: 0.95rem; font-weight: 800; color: var(--brand-green-dark); }
+.feedback-paragraph { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.15rem; line-height: 1.4; }
+
+/* SEÇÃO DE DIAGNÓSTICOS */
+.flex-column-layout { display: flex; flex-direction: column; }
+.diagnostic-indicator-row { display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 8px; border: 1px solid var(--ui-border); margin-bottom: 0.8rem; }
+.diagnostic-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.9rem; font-weight: bold; flex-shrink: 0; }
+.bg-soft-red { background-color: #fef2f2; color: #ef4444; }
+.bg-soft-orange { background-color: #fff7ed; color: #f97316; }
+.bg-soft-green { background-color: #f0fdf4; color: #22c55e; }
+.diagnostic-name { font-size: 0.85rem; font-weight: 700; color: var(--brand-green-dark); }
+.diagnostic-status { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); display: block; margin-top: 0.1rem; }
+
+/* GRADES E CARDS DA ABA AGROECOLOGIA */
+.agro-grid-complet { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.agro-card-extended { background-color: var(--bg-card); border: 1px solid var(--ui-border); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+.agro-card-extended:hover { transform: translateY(-4px); border-color: var(--brand-green-light); box-shadow: 0 10px 20px rgba(15, 54, 34, 0.08); }
+.agro-img-placeholder { height: 80px; background-color: #e8efe9; position: relative; }
+.agro-img-placeholder::after { position: absolute; left: 1rem; bottom: -12px; font-size: 1.4rem; padding: 0.2rem; border-radius: 6px; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+
+.img-rotacao::after { content: "🔄"; }
+.img-adubacao::after { content: "🌿"; }
+.img-mip::after { content: "🐞"; }
+.img-safs::after { content: "🌳"; }
+.img-agua::after { content: "💧"; }
+.img-curvas::after { content: "⛰️"; }
+
+.agro-card-content { padding: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; flex-grow: 1; margin-top: 0.4rem; }
+.agro-card-content h4 { font-size: 0.95rem; font-weight: 800; color: var(--brand-green-dark); }
+.agro-card-content p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; flex-grow: 1; }
+.agro-card-content .tech-tag { align-self: flex-start; background-color: var(--bg-canvas); color: var(--brand-green-dark); font-size: 0.65rem; border: 1px solid var(--ui-border); }
+
+/* OUTRAS ABAS INFORMATIVAS */
+.informational-rich-container { background-color: #f8fafc; border-left: 4px solid var(--brand-green-mid); padding: 1.2rem; border-radius: 4px; font-size: 0.85rem; line-height: 1.6; color: var(--text-main); }
+.materials-grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.material-download-box { border: 1px solid var(--ui-border); padding: 1.2rem; border-radius: 8px; display: flex; flex-direction: column; gap: 0.4rem; cursor: default; }
+.material-format-badge { font-size: 0.65rem; font-weight: 800; background-color: var(--brand-green-dark); color: white; padding: 0.15rem 0.4rem; border-radius: 3px; align-self: flex-start; }
+.material-download-box h5 { font-size: 0.9rem; font-weight: 700; color: var(--brand-green-dark); }
+.material-download-box p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
+
+/* SISTEMA E LAYOUT DO QUIZ INTERATIVO */
+.quiz-header-wrapper { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--ui-border); padding-bottom: 0.8rem; margin-bottom: 1.2rem; }
+.quiz-counter { font-size: 0.8rem; font-weight: 700; background-color: var(--brand-green-dark); color: white; padding: 0.3rem 0.6rem; border-radius: 4px; }
+.quiz-question-heading { font-size: 1rem; font-weight: 700; color: var(--brand-green-dark); margin-bottom: 1rem; }
+.quiz-options-vertical-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+.quiz-opt-btn { background-color: var(--bg-canvas); border: 1px solid var(--ui-border); text-align: left; padding: 0.8rem 1rem; border-radius: 6px; font-family: inherit; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: 0.2s; }
+.quiz-opt-btn:hover { border-color: var(--brand-green-light); background-color: #ffffff; }
+.quiz-opt-btn.correct-ans { background-color: #f0fdf4 !important; border-color: #22c55e !important; color: #14532d !important; font-weight: 700; }
+.quiz-opt-btn.wrong-ans { background-color: #fef2f2 !important; border-color: #ef4444 !important; color: #7f1d1d !important; }
+.quiz-hint-box { font-size: 0.8rem; color: var(--brand-green-mid); background-color: rgba(124,179,66,0.08); padding: 0.8rem; border-radius: 6px; border-left: 3px solid var(--brand-green-light); font-weight: 500; display: none; }
+
+/* ESTILOS ESPECÍFICOS DO NOVO JOGO DA MEMÓRIA */
+.carta-memoria {
+    height: 95px;
+    background: var(--brand-green-dark);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: transparent;
+    transition: transform 0.3s, background-color 0.3s;
+    user-select: none;
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+}
+.carta-memoria.virada {
+    background: #ffffff;
+    color: initial;
+    transform: rotateY(180deg);
+    border-color: var(--brand-green-light);
+}
+.carta-memoria.combinada {
+    background: #f0fdf4;
+    color: initial;
+    border-color: var(--brand-lime);
+    cursor: default;
+    transform: scale(0.95);
+    opacity: 0.85;
+}
+
+/* GAMIFICAÇÃO E MEDALHAS */
+.gamification-status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.gamification-badge-node { border: 1px solid var(--ui-border); padding: 1.5rem; border-radius: 8px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.badge-icon { font-size: 2.2rem; filter: grayscale(1); opacity: 0.3; transition: 0.3s; }
+.badge-icon.unlocked { filter: grayscale(0); opacity: 1; animation: popAward 0.4s ease-out; }
+.gamification-badge-node h5 { font-size: 0.9rem; font-weight: 800; color: var(--brand-green-dark); }
+.badge-status-label { font-size: 0.65rem; font-weight: 800; background-color: var(--bg-canvas); border: 1px solid var(--ui-border); padding: 0.15rem 0.5rem; border-radius: 10px; color: var(--text-muted); }
+.gamification-badge-node.achieved .badge-status-label { background-color: #f0fdf4; border-color: var(--brand-lime); color: var(--brand-green-mid); }
+
+.stats-summary-strip { display: flex; border: 1px solid var(--ui-border); border-radius: 8px; background-color: var(--bg-canvas); overflow: hidden; }
+.strip-item { flex-grow: 1; text-align: center; padding: 1rem; border-right: 1px solid var(--ui-border); }
+.strip-item:last-child { border-right: none; }
+.strip-value { display: block; font-size: 1.3rem; font-weight: 800; color: var(--brand-green-dark); }
+.strip-label { display: block; font-size: 0.7rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; margin-top: 0.15rem; }
+
+/* MODAL DE DETALHAMENTO DO INFOGRÁFICO */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 54, 34, 0.75); display: flex; align-items: center; justify-content: center; z-index: 9999; backdrop-filter: blur(4px); padding: 1rem; }
+.infografico-container { background: var(--bg-card); width: 100%; max-width: 780px; border-radius: var(--ui-radius); border: 2px solid var(--brand-green-light); box-shadow: 0 20px 40px rgba(0,0,0,0.15); overflow: hidden; display: flex; flex-direction: column; max-height: 90vh; }
+.info-header-popup { background: var(--brand-green-dark); padding: 1.2rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--brand-lime); }
+.btn-fechar-popup { background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.4rem; font-weight: bold; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+.btn-fechar-popup:hover { background: rgba(255,255,255,0.25); }
+.info-scroll-body { padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1.2rem; }
+.info-layout-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.info-block-col { background: #f8fafc; padding: 1rem; border-radius: 10px; }
+.info-banner-tags { background: #f0fdf4; border: 1px dashed var(--brand-green-light); padding: 1rem; border-radius: 10px; }
+.popup-tag-tecnica { background: #ffffff; color: var(--brand-green-dark); padding: 0.35rem 0.7rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: 1px solid var(--brand-green-light); }
+.info-popup-badges-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; border-top: 1px solid var(--ui-border); padding-top: 1.2rem; text-align: center; }
+.badge-popup-item { background: rgba(28, 89, 54, 0.04); padding: 0.5rem; border-radius: 6px; }
+.badge-popup-item p { font-size: 0.65rem; font-weight: 800; color: var(--brand-green-dark); text-transform: uppercase; margin-top: 0.2rem; }
+
+/* CONTROLE DE EXIBIÇÃO E TRANSICÕES UTILITY */
+.view-pane { display: none; }
+.view-pane.active { display: block; }
+.hidden { display: none !important; }
+
+/* ANIMAÇÕES DO SISTEMA */
+@keyframes popAward { 0% { transform: scale(0.5); } 80% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+/* DIRETRIZES DE RESPONSIVIDADE */
+@media (max-width: 1024px) {
+    .app-layout { flex-direction: column; }
+    .sidebar-container { width: 100%; padding: 1rem; }
+    .main-viewport { max-width: 100%; padding: 1.5rem; }
+    .nav-list { flex-direction: row; flex-wrap: wrap; }
+    .dashboard-grid-widgets { grid-template-columns: 1fr; }
+    .agro-grid-complet { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+    .nav-btn { font-size: 0.8rem; padding: 0.6rem; }
+    .sim-form-grid { grid-template-columns: 1fr; }
+    .agro-grid-complet { grid-template-columns: 1fr; }
+    .info-layout-columns { grid-template-columns: 1fr; gap: 1rem; }
+    .materials-grid-layout { grid-template-columns: 1fr; }
+    .grid-jogo-memoria { grid-template-columns: repeat(3, 1fr) !important; }
+}

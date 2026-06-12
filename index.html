@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raízes do Amanhã - Painel Oficial Agrinho 2026</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-layout">
+        <aside class="sidebar-container">
+            <div class="brand-wrapper">
+                <div class="brand-avatar">🌾</div>
+                <div>
+                    <h2 class="brand-title">Raízes do Amanhã</h2>
+                    <span class="brand-subtitle">Antônio Olinto - PR</span>
+                </div>
+            </div>
+
+            <nav class="nav-list">
+                <button class="nav-btn active" id="btn-tab-painel" onclick="irParaAba('painel')">
+                    <i class="fa-solid :fa-chart-pie"></i> 📊 Painel Inicial
+                </button>
+                <button class="nav-btn" id="btn-tab-agroecologia" onclick="irParaAba('agroecologia')">
+                    <i class="fa-solid :fa-seedling"></i> 🌱 Agroecologia
+                </button>
+                <button class="nav-btn" id="btn-tab-licoes" onclick="irParaAba('licoes')">
+                    <i class="fa-solid :fa-book-open"></i> 📚 Lições do Campo
+                </button>
+                <button class="nav-btn" id="btn-tab-materiais" onclick="irParaAba('materiais')">
+                    <i class="fa-solid :fa-folder-open"></i> 📂 Materiais de Apoio
+                </button>
+                <button class="nav-btn" id="btn-tab-desafios" onclick="irParaAba('desafios')">
+                    <i class="fa-solid :fa-gamepad"></i> 🎮 Desafios & Jogos
+                </button>
+                <button class="nav-btn" id="btn-tab-progresso" onclick="irParaAba('progresso')">
+                    <i class="fa-solid :fa-chart-line"></i> 📈 Meu Progresso
+                </button>
+            </nav>
+
+            <div class="sidebar-alert-box">
+                <h4 class="alert-box-title">TECNOLOGIA RURAL</h4>
+                <p class="alert-box-desc">Sustentabilidade e Computação pelo Concurso Agrinho 2026.</p>
+                <button class="alert-box-action">Projeto Ativo</button>
+            </div>
+        </aside>
+
+        <main class="main-viewport">
+            <header class="header-viewport">
+                <div class="welcome-message-group">
+                    <h1 class="welcome-title">Monitoramento de Impacto Agroecológico</h1>
+                    <p class="welcome-subtitle">Tecnologia aplicada ao desenvolvimento sustentável da Escola do Campo rural.</p>
+                </div>
+                <div class="profile-badge">
+                    <div class="profile-avatar">👨‍🌾</div>
+                    <div class="profile-meta">
+                        <span class="profile-name">Aluno Conectado</span>
+                        <span class="profile-role">Colégio Estadual</span>
+                    </div>
+                </div>
+            </header>
+
+            <div id="view-painel" class="view-pane active">
+                <div class="dashboard-grid-widgets">
+                    <div class="card-base card-span-2">
+                        <div class="sim-header">
+                            <div>
+                                <h3 class="sim-title">🔄 Simulador de Sustentabilidade Agrícola</h3>
+                                <p class="sim-desc">Insira os parâmetros da propriedade para calcular o Índice de Conformidade Agroecológica.</p>
+                            </div>
+                            <span class="tech-tag tag-vibrante">Mecanismo Lógico</span>
+                        </div>
+
+                        <div class="sim-form-grid">
+                            <div class="form-control-group">
+                                <label class="control-label">Prática de Rotação de Culturas:</label>
+                                <select id="sim-input-rotacao" class="form-select" onchange="processarSimulacaoAgroecologica()">
+                                    <option value="0">Não realiza (Monocultura contínua)</option>
+                                    <option value="1">Realiza parcialmente (Duas culturas apenas)</option>
+                                    <option value="2">Realiza totalmente (Três ou mais culturas em rodízio)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-control-group">
+                                <label class="control-label">Manejo da Cobertura de Solo:</label>
+                                <select id="sim-input-cobertura" class="form-select" onchange="processarSimulacaoAgroecologica()">
+                                    <option value="0">Solo descoberto ou queima de resíduos</option>
+                                    <option value="1">Cobertura em períodos secos apenas</option>
+                                    <option value="2">Cobertura viva ou palhada permanente (Plantio Direto)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-control-group">
+                                <label class="control-label">Uso de Insumos Químicos / Defensivos:</label>
+                                <select id="sim-input-insumos" class="form-select" onchange="processarSimulacaoAgroecologica()">
+                                    <option value="0">Uso intensivo sem monitoramento de pragas</option>
+                                    <option value="1">Uso moderado associado a controles manuais</option>
+                                    <option value="2">Uso zero ou exclusivo de Bioinsumos / Defensivos Naturais</option>
+                                </select>
+                            </div>
+
+                            <div class="form-control-group">
+                                <label class="control-label">Preservação de Áreas Protegidas (APPs):</label>
+                                <select id="sim-input-reserva" class="form-select" onchange="processarSimulacaoAgroecologica()">
+                                    <option value="0">Mina d'água desprotegida ou gado com acesso direto</option>
+                                    <option value="1">Cercamento parcial da nascente sem mata nativa</option>
+                                    <option value="2">Nascente totalmente protegida, cercada e reflorestada</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="sim-result-container">
+                            <div class="result-gauge-box">
+                                <div id="radial-gauge-fill" class="gauge-bar" style="width: 0%;"></div>
+                                <span id="radial-gauge-value" class="gauge-text">0%</span>
+                            </div>
+                            <div class="result-feedback-meta">
+                                <h4 id="txt-status-titulo" class="feedback-heading">Aguardando Parâmetros...</h4>
+                                <p id="txt-status-corpo" class="feedback-paragraph">Altere as seleções acima para rodar o algoritmo de análise sustentável em tempo real.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-base flex-column-layout">
+                        <h3 class="card-title">📉 Histórico e Diagnósticos</h3>
+                        <p class="card-subtitle">Impactos estimados com base nas configurações ativas do simulador:</p>
+                        
+                        <div class="diagnostic-indicator-row">
+                            <div class="diagnostic-icon bg-soft-red" id="ico-diag-erosao">❌</div>
+                            <div>
+                                <h5 class="diagnostic-name">Risco de Erosão</h5>
+                                <span class="diagnostic-status" id="val-diag-erosao">Não calculado</span>
+                            </div>
+                        </div>
+
+                        <div class="diagnostic-indicator-row">
+                            <div class="diagnostic-icon bg-soft-orange" id="ico-diag-custos">❌</div>
+                            <div>
+                                <h5 class="diagnostic-name">Dependência Externa</h5>
+                                <span class="diagnostic-status" id="val-diag-custos">Não calculado</span>
+                            </div>
+                        </div>
+
+                        <div class="diagnostic-indicator-row">
+                            <div class="diagnostic-icon bg-soft-green" id="ico-diag-vida">❌</div>
+                            <div>
+                                <h5 class="diagnostic-name">Biologia do Solo</h5>
+                                <span class="diagnostic-status" id="val-diag-vida">Não calculado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-agroecologia" class="view-pane">
+                <section class="card-base">
+                    <h2 class="card-title">🌱 Práticas Agroecológicas Fundamentais</h2>
+                    <p class="card-subtitle">Clique em cima de qualquer card técnico abaixo para abrir o infográfico interativo detalhado com o funcionamento e espécies recomendadas.</p>
+                    
+                    <div class="agro-grid-complet">
+                        <div class="agro-card-extended" onclick="abrirDetalheAgro('rotacao')" style="cursor: pointer;">
+                            <div class="agro-img-placeholder img-rotacao"></div>
+                            <div class="agro-card-content">
+                                <h4>🔄 Rotação e Diversificação</h4>
+                                <p>Alternância planejada de culturas comerciais e plantas de cobertura para quebrar pragas.</p>
+                                <span class="tech-tag">Manejo de Solo</span>
+                            </div>
+                        </div>
+
+                        <div class="agro-card-extended" onclick="abrirDetalheAgro('adubacao')" style="cursor: pointer;">
+                            <div class="agro-img-placeholder img-adubacao"></div>
+                            <div class="agro-card-content">
+                                <h4>🌿 Adubação Verde</h4>
+                                <p>Uso de plantas como leguminosas para fixar nitrogênio atmosférico e enriquecer a terra de forma biológica.</p>
+                                <span class="tech-tag">Nutrição Orgânica</span>
+                            </div>
+                        </div>
+
+                        <div class="agro-card-extended" onclick="abrirDetalheAgro('mip')" style="cursor: pointer;">
+                            <div class="agro-img-placeholder img-mip"></div>
+                            <div class="agro-card-content">
+                                <h4>🐞 MIP - Manejo Integrado</h4>
+                                <p>Monitoramento constante e inserção de inimigos naturais (insetos benéficos) para o controle biológico de pragas.</p>
+                                <span class="tech-tag">Proteção Biológica</span>
+                            </div>
+                        </div>
+
+                        <div class="agro-card-extended" onclick="abrirDetalheAgro('safs')" style="cursor: pointer;">
+                            <div class="agro-img-placeholder img-safs"></div>
+                            <div class="agro-card-content">
+                                <h4>🌳 Sistemas Agroflorestais</h4>
+                                <p>Consorciação de árvores de grande porte com espécies agrícolas, recriando a dinâmica estável das florestas.</p>
+                                <span class="tech-tag">Biodiversidade</span>
+                            </div>
+                        </div>
+
+                        <div class="agro-card-extended" onclick="abrirDetalheAgro('nascentes')" style="cursor: pointer;">
+                            <div class="agro-img-placeholder img-agua"></div>
+                            <div class="agro-card-content">
+                                <h4>💧 Proteção de Nascentes</h4>
+                                <p>Cercamento protetor e reflorestamento total com árvores nativas para perenidade dos recursos hídricos.</p>
+                                <span class="tech-tag">Recursos Hídricos</span>
+                            </div>
+                        </div>
+
+                        <div class="agro-card-extended" onclick="abrirDetalheAgro('curvas')" style="cursor: pointer;">
+                            <div class="agro-img-placeholder img-curvas"></div>
+                            <div class="agro-card-content">
+                                <h4>⛰️ Curvas de Nível</h4>
+                                <p>Plantio perpendicular à inclinação do terreno para frear a enxurrada e erradicar a erosão superficial.</p>
+                                <span class="tech-tag">Mecânica do Solo</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="view-licoes" class="view-pane">
+                <section class="card-base">
+                    <h2 class="card-title">📚 Lições Práticas do Meio Rural</h2>
+                    <p class="card-subtitle">Fundamentos teóricos condensados pela nossa comunidade escolar para fixação rápida.</p>
+                    <div class="informational-rich-container">
+                        <p>A agroecologia não é apenas a ausência de insumos químicos; trata-se do desenho sistêmico de ecossistemas agrícolas produtivos que copiam a natureza. Ao gerenciar corretamente a biologia do solo através de rotações complexas e plantas com raízes profundas, o produtor elimina a necessidade de fertilizantes industriais de alto custo, assegurando a pureza das bacias hidrográficas locais e a fixação contínua de carbono atmosférico na palhada protetora.</p>
+                    </div>
+                </section>
+            </div>
+
+            <div id="view-materiais" class="view-pane">
+                <section class="card-base">
+                    <h2 class="card-title">📂 Central de Materiais Pedagógicos</h2>
+                    <p class="card-subtitle">Materiais complementares integrados para embasamento técnico do projeto escolar.</p>
+                    <div class="materials-grid-layout">
+                        <div class="material-download-box">
+                            <span class="material-format-badge">MANUAL</span>
+                            <h5>Guia Técnico de Adubação Verde</h5>
+                            <p>Documento referencial sobre espécies de cobertura e fixação de nitrogênio.</p>
+                        </div>
+                        <div class="material-download-box">
+                            <span class="material-format-badge">VÍDEO</span>
+                            <h5>Manejo de Solo na Escola do Campo</h5>
+                            <p>Registro prático em campo demonstrando a aplicação de curvas de nível.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="view-desafios" class="view-pane">
+                <section class="card-base">
+                    <div class="quiz-header-wrapper">
+                        <div>
+                            <h2 class="card-title">🧠 Teste de Fixação Ecológica</h2>
+                            <p class="card-subtitle">Responda as questões abaixo para validar seu aprendizado técnico.</p>
+                        </div>
+                        <div id="quiz-score-badge" class="quiz-counter">Questão: 1 / 3</div>
+                    </div>
+
+                    <div id="quiz-interactive-box" class="quiz-body-box">
+                        <h4 id="quiz-txt-pergunta" class="quiz-question-heading">Carregando Pergunta...</h4>
+                        <div id="quiz-container-opcoes" class="quiz-options-vertical-list">
+                            </div>
+                        <p id="quiz-txt-dica" class="quiz-hint-box"></p>
+                    </div>
+                </section>
+
+                <section class="card-base" style="margin-top: 2rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 2px solid var(--ui-border); padding-bottom: 0.5rem;">
+                        <div>
+                            <h3 style="color: var(--brand-green-dark); margin: 0; font-size: 1.2rem;">🎮 Jogo da Memória Agroecológica - Concurso Agrinho</h3>
+                            <p style="color: var(--text-muted); margin: 2px 0 0 0; font-size: 0.85rem;">Encontre e combine os pares de técnicas ecológicas para testar sua agilidade mental!</p>
+                        </div>
+                        <button onclick="inicializarJogoMemoria()" style="background: var(--brand-green-mid); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.85rem; transition: background 0.2s;">🔄 Reiniciar Jogo</button>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1.5rem; background: var(--bg-canvas); padding: 0.8rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem; font-weight: 700; color: var(--brand-green-dark);">
+                        <div>⏱️ Tempo: <span id="memoria-tempo">00:00</span></div>
+                        <div>🔢 Movimentos: <span id="memoria-movimentos">0</span></div>
+                        <div>🏆 Pares Encontrados: <span id="memoria-pares">0 / 6</span></div>
+                    </div>
+
+                    <div id="grid-jogo-memoria" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 600px; margin: 0 auto; padding: 10px 0;">
+                        </div>
+                </section>
+            </div>
+
+            <div id="view-progresso" class="view-pane">
+                <section class="card-base">
+                    <h2 class="card-title">📈 Conquistas e Medalhas de Desempenho</h2>
+                    <p class="card-subtitle">Acompanhe seu avanço em todas as atividades interativas e práticas da plataforma:</p>
+                    
+                    <div class="gamification-status-grid">
+                        <div class="gamification-badge-node" id="node-ch-quiz">
+                            <div class="badge-icon" id="med-target-quiz">🏅</div>
+                            <h5>Gabarito no Quiz</h5>
+                            <span class="badge-status-label" id="tag-ch-quiz">Em Andamento</span>
+                        </div>
+                        <div class="gamification-badge-node" id="node-ch-sim">
+                            <div class="badge-icon" id="med-target-sim">🏆</div>
+                            <h5>Sustentabilidade Máxima</h5>
+                            <span class="badge-status-label" id="tag-ch-sim">Em Andamento</span>
+                        </div>
+                    </div>
+
+                    <div class="stats-summary-strip" style="margin-top: 2rem;">
+                        <div class="strip-item">
+                            <span class="strip-value" id="meta-txt-missoes">0 / 2</span>
+                            <span class="strip-label">Missões Concluídas</span>
+                        </div>
+                        <div class="strip-item">
+                            <span class="strip-value" id="meta-txt-quiz">0%</span>
+                            <span class="strip-label">Precisão do Quiz</span>
+                        </div>
+                        <div class="strip-item">
+                            <span class="strip-value" id="meta-txt-sim">--</span>
+                            <span class="strip-label">Recorde do Simulador</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="modal-agroecologia" class="modal-overlay hidden">
+        <div class="infografico-container">
+            <header class="info-header-popup">
+                <div style="display: flex; align-items: center; gap: 0.8rem;">
+                    <span id="info-icone" style="font-size: 1.8rem; background: rgba(255,255,255,0.12); padding: 0.4rem; border-radius: 8px;">🌱</span>
+                    <h2 id="info-titulo" style="color: #ffffff; font-size: 1.25rem; font-weight: 800; margin: 0;">Título da Técnica</h2>
+                </div>
+                <button class="btn-fechar-popup" onclick="fecharDetalheAgro()">&times;</button>
+            </header>
+            
+            <div class="info-scroll-body">
+                <div class="info-layout-columns">
+                    <div class="info-block-col" style="border-left: 4px solid var(--brand-green-mid);">
+                        <h3 style="font-size: 0.95rem; color: var(--brand-green-dark); margin-top: 0; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">⚙️ Como Funciona?</h3>
+                        <p id="info-funciona" style="font-size: 0.85rem; line-height: 1.5; color: var(--text-main); margin: 0;">Explicação técnica...</p>
+                    </div>
+                    
+                    <div class="info-block-col" style="border-left: 4px solid var(--brand-green-light);">
+                        <h3 style="font-size: 0.95rem; color: var(--brand-green-dark); margin-top: 0; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">🏆 Benefícios Diretos</h3>
+                        <ul id="info-beneficios" style="padding-left: 1.2rem; font-size: 0.85rem; line-height: 1.5; color: var(--text-muted); margin: 0; display: flex; flex-direction: column; gap: 0.4rem;">
+                            </ul>
+                    </div>
+                </div>
+
+                <div class="info-banner-tags">
+                    <h3 style="font-size: 0.95rem; color: var(--brand-green-mid); margin-top: 0; margin-bottom: 0.6rem;">🌱 Aplicação Prática Local / Espécies Recomendadas</h3>
+                    <div id="info-especies" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        </div>
+                </div>
+
+                <div class="info-popup-badges-strip">
+                    <div class="badge-popup-item">
+                        <span style="font-size: 1.3rem;">💰</span>
+                        <p>Custos Reduzidos</p>
+                    </div>
+                    <div class="badge-popup-item">
+                        <span style="font-size: 1.3rem;">🌍</span>
+                        <p>Sustentabilidade</p>
+                    </div>
+                    <div class="badge-popup-item">
+                        <span style="font-size: 1.3rem;">📈</span>
+                        <p>Solo Enriquecido</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
