@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioCampo Hub - Raízes do Amanhã | Agrinho 2026</title>
+    <title>Raízes do Amanhã | Agrinho 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,78 +12,79 @@
 </head>
 <body>
 
-    <div class="app-layout">
-        <aside class="sidebar-container">
-            <div class="brand-wrapper">
-                <div class="brand-avatar">🌾</div>
-                <div>
-                    <h2 class="brand-title">BioCampo Hub</h2>
-                    <span class="brand-subtitle">Antônio Olinto - PR</span>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">🌾</div>
+                <div class="logo-text">
+                    <h2>Raízes do Amanhã</h2>
+                    <span>ANTÔNIO OLINTO - PR</span>
                 </div>
             </div>
 
-            <nav class="nav-list">
-                <button class="nav-btn active" id="btn-tab-painel" onclick="irParaAba('painel')">
+            <nav class="sidebar-menu">
+                <button class="menu-item active" id="btn-painel" onclick="trocarAba('painel')">
                     <i class="fa-solid fa-chart-pie"></i> Painel Inicial
                 </button>
-                <button class="nav-btn" id="btn-tab-agroecologia" onclick="irParaAba('agroecologia')">
+                <button class="menu-item" id="btn-agroecologia" onclick="trocarAba('agroecologia')">
                     <i class="fa-solid fa-seedling"></i> Agroecologia
                 </button>
-                <button class="nav-btn" id="btn-tab-licoes" onclick="irParaAba('licoes')">
-                    <i class="fa-solid fa-book-open"></i> Lições do Campo
+                <button class="menu-item" id="btn-licoes" onclick="trocarAba('licoes')">
+                    <i class="fa-solid fa-book"></i> Lições do Campo
                 </button>
-                <button class="nav-btn" id="btn-tab-materiais" onclick="irParaAba('materiais')">
-                    <i class="fa-solid fa-folder-open"></i> Materiais de Apoio
+                <button class="menu-item" id="btn-materiais" onclick="trocarAba('materiais')">
+                    <i class="fa-solid fa-folder"></i> Materiais de Apoio
                 </button>
-                <button class="nav-btn" id="btn-tab-desafios" onclick="irParaAba('desafios')">
-                    <i class="fa-solid fa-gamepad"></i> Desafios & Jogos
+                <button class="menu-item" id="btn-desafios" onclick="trocarAba('desafios')">
+                    <i class="fa-solid fa-trophy"></i> Desafios & Jogos
                 </button>
-                <button class="nav-btn" id="btn-tab-progresso" onclick="irParaAba('progresso')">
+                <button class="menu-item" id="btn-progresso" onclick="trocarAba('progresso')">
                     <i class="fa-solid fa-square-check"></i> Meu Progresso
                 </button>
             </nav>
 
-            <div class="sidebar-footer">
-                <span class="footer-tag">AGRINHO 2026</span>
-                <p>Sustentabilidade Rústica e Computação Aplicada.</p>
-                <div class="footer-status">Projeto Ativo</div>
+            <div class="sidebar-badge">
+                <h3>TECNOLOGIA RURAL</h3>
+                <p>Sustentabilidade Rústica e Computação pelo Concurso Agrinho 2026.</p>
+                <div class="badge-status">Projeto Ativo</div>
             </div>
         </aside>
 
-        <main class="main-content">
-            <header class="top-header">
-                <div class="header-info">
-                    <h1 id="main-page-title">Monitoramento de Impacto Agroecológico</h1>
-                    <p id="main-page-subtitle">Tecnologia aplicada ao desenvolvimento sustentável da Escola do Campo rural.</p>
+        <main class="main-layout">
+            <header class="main-header">
+                <div class="header-titles">
+                    <h1 id="page-title">Monitoramento de Impacto Agroecológico</h1>
+                    <p id="page-subtitle">Tecnologia aplicada ao desenvolvimento sustentável da Escola do Campo rural.</p>
                 </div>
-                <div class="user-badge">
-                    <span class="user-avatar">🧑‍🌾</span>
-                    <div>
+                <div class="user-profile">
+                    <div class="user-avatar">🧑‍🌾</div>
+                    <div class="user-details">
                         <span class="user-name">Aluno Conectado</span>
-                        <span class="user-role">Colégio Estadual</span>
+                        <span class="user-sub">Colégio Estadual</span>
                     </div>
+                    <span class="online-indicator"></span>
                 </div>
             </header>
 
-            <div class="tabs-container">
+            <div class="content-body">
 
-                <section id="tab-painel" class="tab-content active">
-                    <div class="card-box">
-                        <div class="card-header">
+                <section id="tab-painel" class="aba-container active">
+                    <div class="content-card">
+                        <div class="card-title-block">
                             <h3><i class="fa-solid fa-sliders"></i> Simulador de Diagnóstico Agroecológico</h3>
                             <p>Preencha os parâmetros de manejo da sua propriedade para calcular o índice de sustentabilidade da lavoura.</p>
                         </div>
-                        <form id="simulador-form" onsubmit="calcularSustentabilidade(event)">
-                            <div class="form-grid">
-                                <div class="form-group">
+                        <form id="form-simulador" onsubmit="executarDiagnostico(event)">
+                            <div class="inputs-row">
+                                <div class="input-box">
                                     <label for="cobertura">Cobertura do Solo com Palhada (%):</label>
                                     <input type="number" id="cobertura" min="0" max="100" required placeholder="Ex: 75">
                                 </div>
-                                <div class="form-group">
+                                <div class="input-box">
                                     <label for="diversidade">Variedade de Culturas no Ano:</label>
                                     <input type="number" id="diversidade" min="1" max="15" required placeholder="Ex: 3">
                                 </div>
-                                <div class="form-group">
+                                <div class="input-box">
                                     <label for="quimicos">Uso de Insumos Químicos Sintéticos:</label>
                                     <select id="quimicos" required>
                                         <option value="alto">Alto (Aplicações frequentes/calendário)</option>
@@ -92,159 +93,159 @@
                                     </select>
                                 </div>
                             </div>
-                            <button type="submit" class="primary-btn"><i class="fa-solid fa-calculator"></i> Rodar Diagnóstico Computacional</button>
+                            <button type="submit" class="btn-primary"><i class="fa-solid fa-calculator"></i> Rodar Diagnóstico Computacional</button>
                         </form>
-                        <div id="resultado-simulador" class="resultado-box hidden"></div>
+                        <div id="resultado-diagnostico" class="output-alert hidden"></div>
                     </div>
                 </section>
 
-                <section id="tab-agroecologia" class="tab-content">
-                    <div class="card-box">
-                        <div class="card-header">
-                            <h3><i class="fa-solid fa-book"></i> Manual Técnico Interativo de Práticas Agroecológicas</h3>
-                            <p>Explore os pilares científicos indispensáveis para a conservação e produtividade contínua no campo. <strong>Clique em qualquer card para abrir o infográfico técnico detalhado.</strong></p>
+                <section id="tab-agroecologia" class="aba-container">
+                    <div class="content-card">
+                        <div class="card-title-block">
+                            <h3><i class="fa-solid fa-leaf"></i> Manual Técnico Interativo de Práticas Agroecológicas</h3>
+                            <p>Explore os pilares científicos indispensáveis para a conservação e produtividade contínua no campo. <strong>Clique em qualquer card para abrir o detalhamento técnico.</strong></p>
                         </div>
                         
-                        <div class="agro-grid">
-                            <div class="agro-card" onclick="abrirPopup('rotacao')">
-                                <div class="card-img-placeholder">🔄 Rotação de Milho, Soja e Cobertura</div>
-                                <div class="card-body">
+                        <div class="cards-grid">
+                            <div class="interactive-card" onclick="mostrarModal('rotacao')">
+                                <div class="card-preview-img img-rotacao">🔄 Rotação de Milho, Soja e Cobertura</div>
+                                <div class="interactive-card-content">
                                     <h4>Rotação e Diversificação de Culturas</h4>
                                     <p>O plantio alternado de diferentes espécies vegetais na mesma área quebra o ciclo biológico de pragas e doenças.</p>
-                                    <span class="tag-label">Manejo de Solo</span>
+                                    <span class="card-badge-tag">Manejo de Solo</span>
                                 </div>
                             </div>
-                            <div class="agro-card" onclick="abrirPopup('adubacao')">
-                                <div class="card-img-placeholder">🌱 Leguminosas e Fixação de Nitrogênio</div>
-                                <div class="card-body">
+                            <div class="interactive-card" onclick="mostrarModal('adubacao')">
+                                <div class="card-preview-img img-adubacao">🌱 Leguminosas e Fixação de Nitrogênio</div>
+                                <div class="interactive-card-content">
                                     <h4>Adubação Verde e Cobertura Viva</h4>
                                     <p>Utilização de plantas cultivadas para proteger o solo contra o impacto direto da chuva e fixar nutrientes biologicamente.</p>
-                                    <span class="tag-label">Nutrição Orgânica</span>
+                                    <span class="card-badge-tag">Nutrição Orgânica</span>
                                 </div>
                             </div>
-                            <div class="agro-card" onclick="abrirPopup('mip')">
-                                <div class="card-img-placeholder">🐞 Joaninhas e Controle Biológico</div>
-                                <div class="card-body">
+                            <div class="interactive-card" onclick="mostrarModal('mip')">
+                                <div class="card-preview-img img-mip">🐞 Joaninhas e Controle Biológico</div>
+                                <div class="interactive-card-content">
                                     <h4>MIP - Manejo Integrado de Pragas</h4>
                                     <p>Estratégia que prioriza o controle biológico natural e defensivos bioecológicos, reduzindo a dependência química.</p>
-                                    <span class="tag-label">Proteção Biológica</span>
+                                    <span class="card-badge-tag">Proteção Biológica</span>
                                 </div>
                             </div>
-                            <div class="agro-card" onclick="abrirPopup('safs')">
-                                <div class="card-img-placeholder">🌳 Consorciação de Árvores e Lavouras</div>
-                                <div class="card-body">
+                            <div class="interactive-card" onclick="mostrarModal('safs')">
+                                <div class="card-preview-img img-safs">🌳 Consorciação de Árvores e Lavouras</div>
+                                <div class="interactive-card-content">
                                     <h4>Sistemas Agroflorestais (SAFs)</h4>
                                     <p>Consorciação planejada que combina árvores perenes, arbustos e cultivos agrícolas no mesmo espaço físico.</p>
-                                    <span class="tag-label">Biodiversidade</span>
+                                    <span class="card-badge-tag">Biodiversidade</span>
                                 </div>
                             </div>
-                            <div class="agro-card" onclick="abrirPopup('nascentes')">
-                                <div class="card-img-placeholder">💧 Cercamento e Proteção de Águas</div>
-                                <div class="card-body">
+                            <div class="interactive-card" onclick="mostrarModal('nascentes')">
+                                <div class="card-preview-img img-nascentes">💧 Cercamento e Proteção de Águas</div>
+                                <div class="interactive-card-content">
                                     <h4>Recuperação e Proteção de Nascentes</h4>
                                     <p>Isolamento mecânico num raio mínimo de 50 metros ao redor do olho d'água para impedir o pisoteio do gado.</p>
-                                    <span class="tag-label">Recursos Hídricos</span>
+                                    <span class="card-badge-tag">Recursos Hídricos</span>
                                 </div>
                             </div>
-                            <div class="agro-card" onclick="abrirPopup('curvas')">
-                                <div class="card-img-placeholder">🚜 Terraceamento em Terrenos Inclinados</div>
-                                <div class="card-body">
+                            <div class="interactive-card" onclick="mostrarModal('curvas')">
+                                <div class="card-preview-img img-curvas">🚜 Terraceamento em Terrenos Inclinados</div>
+                                <div class="interactive-card-content">
                                     <h4>Curvas de Nível e Terraceamento</h4>
                                     <p>Técnicas mecânicas rústicas aplicadas em terrenos inclinados. Corta-se a velocidade da enxurrada descendente.</p>
-                                    <span class="tag-label">Mecânica do Solo</span>
+                                    <span class="card-badge-tag">Mecânica do Solo</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <section id="tab-licoes" class="tab-content">
-                    <div class="card-box">
-                        <div class="card-header">
+                <section id="tab-licoes" class="aba-container">
+                    <div class="content-card">
+                        <div class="card-title-block">
                             <h3><i class="fa-solid fa-graduation-cap"></i> Quiz das Lições Práticas do Meio Rural</h3>
                             <p>Treinamento avançado contendo 30 perguntas divididas em três níveis de complexidade biológica e agronômica.</p>
                         </div>
 
-                        <div class="quiz-level-selector">
-                            <button class="lvl-btn active" id="lvl-facil" onclick="selecionarNivelQuiz('facil')">🌱 Nível Fácil (1-10)</button>
-                            <button class="lvl-btn" id="lvl-medio" onclick="selecionarNivelQuiz('medio')">🌿 Nível Médio (11-20)</button>
-                            <button class="lvl-btn" id="lvl-dificil" onclick="selecionarNivelQuiz('dificil')">🌳 Nível Difícil (21-30)</button>
+                        <div class="level-switcher">
+                            <button class="lvl-toggle active" id="btn-lvl-facil" onclick="mudarDificuldadeQuiz('facil')">🌱 Nível Fácil (1-10)</button>
+                            <button class="lvl-toggle" id="btn-lvl-medio" onclick="mudarDificuldadeQuiz('medio')">🌿 Nível Médio (11-20)</button>
+                            <button class="lvl-toggle" id="btn-lvl-dificil" onclick="mudarDificuldadeQuiz('dificil')">🌳 Nível Difícil (21-30)</button>
                         </div>
 
-                        <div class="quiz-container">
-                            <div class="quiz-progress-wrapper">
-                                <span id="quiz-tracker">Pergunta 1 de 10</span>
-                                <div class="quiz-bar-bg"><div id="quiz-bar-fill"></div></div>
+                        <div class="quiz-box-wrapper">
+                            <div class="quiz-meta-info">
+                                <span id="quiz-question-counter">Pergunta 1 de 10</span>
+                                <div class="progress-bar-container"><div id="quiz-progress-fill"></div></div>
                             </div>
                             
-                            <h4 id="quiz-question-text">Carregando questionário...</h4>
-                            <div id="quiz-options-block" class="quiz-options-grid"></div>
+                            <h4 id="quiz-question-display">Carregando dados...</h4>
+                            <div id="quiz-options-container" class="quiz-options-stack"></div>
 
-                            <div class="quiz-action-footer">
-                                <div id="quiz-feedback-box" class="quiz-feedback-msg hidden"></div>
-                                <button id="quiz-next-btn" class="primary-btn" onclick="passarPerguntaQuiz()" disabled>Avançar Pergunta <i class="fa-solid fa-chevron-right"></i></button>
+                            <div class="quiz-control-bar">
+                                <div id="quiz-msg-feedback" class="quiz-feedback hidden"></div>
+                                <button id="quiz-btn-next" class="btn-primary" onclick="proximaPergunta()" disabled>Avançar Pergunta <i class="fa-solid fa-chevron-right"></i></button>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <section id="tab-materiais" class="tab-content">
-                    <div class="card-box">
-                        <div class="card-header">
-                            <h3><i class="fa-solid fa-folder-open"></i> Central de Materiais Pedagógicos</h3>
+                <section id="tab-materiais" class="aba-container">
+                    <div class="content-card">
+                        <div class="card-title-block">
+                            <h3><i class="fa-solid fa-book-open"></i> Central de Materiais Pedagógicos</h3>
                             <p>Materiais complementares integrados para embasamento técnico do projeto escolar.</p>
                         </div>
                         
-                        <div class="materials-grid">
-                            <div class="material-card">
-                                <span class="mat-tag pdf-tag">MANUAL</span>
+                        <div class="materials-row">
+                            <div class="material-item">
+                                <span class="doc-tag tag-pdf">MANUAL</span>
                                 <h4>Guia Técnico de Adubação Verde</h4>
                                 <p>Documento referencial científico oficial da Embrapa sobre espécies de cobertura e fixação de nitrogênio.</p>
-                                <button class="sec-btn" onclick="gerenciarVisualizacaoMidia('pdf')"><i class="fa-solid fa-file-pdf"></i> Abrir Manual Técnico</button>
+                                <button class="btn-secondary" onclick="carregarMidia('pdf')"><i class="fa-solid fa-file-pdf"></i> Abrir Manual Técnico</button>
                             </div>
-                            <div class="material-card">
-                                <span class="mat-tag video-tag">VÍDEO</span>
+                            <div class="material-item">
+                                <span class="doc-tag tag-video">VÍDEO</span>
                                 <h4>Manejo de Solo na Escola do Campo</h4>
                                 <p>Registro prático em campo demonstrando a aplicação de curvas de nível e monitoria agroecológica.</p>
-                                <button class="sec-btn" onclick="gerenciarVisualizacaoMidia('video')"><i class="fa-solid fa-play"></i> Assistir Vídeo Prático</button>
+                                <button class="btn-secondary" onclick="carregarMidia('video')"><i class="fa-solid fa-play"></i> Assistir Vídeo Prático</button>
                             </div>
                         </div>
 
-                        <div id="media-display-zone" class="media-display-zone hidden">
-                            <div class="media-zone-header">
-                                <h4 id="media-zone-title">Visualizador</h4>
-                                <button class="close-zone-btn" onclick="fecharZonaMidia()"><i class="fa-solid fa-xmark"></i> Fechar Material</button>
+                        <div id="media-viewport-container" class="media-viewport hidden">
+                            <div class="media-viewport-top">
+                                <h4 id="media-viewport-title">Visualizador Embutido</h4>
+                                <button class="btn-close-media" onclick="fecharMidia()"><i class="fa-solid fa-xmark"></i> Fechar Arquivo</button>
                             </div>
-                            <div id="media-frame-target" class="media-frame-target"></div>
+                            <div id="media-frame-box" class="media-frame-box"></div>
                         </div>
                     </div>
                 </section>
 
-                <section id="tab-desafios" class="tab-content">
-                    <div class="card-box">
-                        <div class="card-header">
+                <section id="tab-desafios" class="aba-container">
+                    <div class="content-card">
+                        <div class="card-title-block">
                             <h3><i class="fa-solid fa-gamepad"></i> Missões e Desafios Computacionais</h3>
                             <p>Fixação de conceitos biológicos por intermédio de lógicas de correspondência direta.</p>
                         </div>
 
-                        <div class="game-dashboard">
-                            <div class="game-stat-card">⏳ Tempo: <span id="game-timer">00:00</span></div>
-                            <div class="game-stat-card">🔄 Jogadas: <span id="game-moves">0</span></div>
-                            <button class="primary-btn" onclick="reiniciarJogoMemoria()"><i class="fa-solid fa-rotate-right"></i> Reiniciar Matriz</button>
+                        <div class="game-scorekeeper">
+                            <div class="score-pill">⏳ Cronômetro: <span id="timer-val">00:00</span></div>
+                            <div class="score-pill">🔄 Movimentos: <span id="moves-val">0</span></div>
+                            <button class="btn-primary" onclick="inicializarJogo()"><i class="fa-solid fa-rotate-right"></i> Reiniciar Tabuleiro</button>
                         </div>
 
-                        <div id="memory-grid-board" class="memory-board"></div>
+                        <div id="memory-board-canvas" class="memory-grid-canvas"></div>
                     </div>
                 </section>
 
-                <section id="tab-progresso" class="tab-content">
-                    <div class="card-box">
-                        <div class="card-header">
-                            <h3><i class="fa-solid fa-chart-line"></i> Relatório Analítico de Aproveitamento</h3>
+                <section id="tab-progresso" class="aba-container">
+                    <div class="content-card">
+                        <div class="card-title-block">
+                            <h3><i class="fa-solid fa-square-poll-vertical"></i> Relatório Analítico de Aproveitamento</h3>
                             <p>Histórico das avaliações simuladas executadas ao longo do ano letivo de 2026.</p>
                         </div>
-                        <div class="progresso-metricas">
-                            <p><strong>Ações Concluídas:</strong> Integração Front-End nativa aprovada em conformidade absoluta com as regras regulamentares do Concurso Agrinho.</p>
+                        <div class="progresso-info-box">
+                            <p><strong>Status do Sistema:</strong> Todas as rotinas de front-end nativas (HTML5 estrutural, regras de renderização CSS3 e processamento de estado via Vanilla JS) encontram-se operacionais e integradas com sucesso em abas dinâmicas.</p>
                         </div>
                     </div>
                 </section>
@@ -253,10 +254,10 @@
         </main>
     </div>
 
-    <div id="info-modal-popup" class="modal-overlay hidden" onclick="fecharPopupExterna(event)">
-        <div class="modal-window">
-            <button class="modal-close-btn" onclick="fecharPopup()"><i class="fa-solid fa-circle-xmark"></i></button>
-            <div id="modal-injector-content"></div>
+    <div id="global-modal-overlay" class="modal-backdrop hidden" onclick="fecharModalPorCliqueFora(event)">
+        <div class="modal-box-body">
+            <button class="modal-btn-x" onclick="ocultarModal()"><i class="fa-solid fa-circle-xmark"></i></button>
+            <div id="modal-content-injector"></div>
         </div>
     </div>
 

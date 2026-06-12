@@ -1,48 +1,58 @@
-# AGRINHO-2026-1COLOCADO# 🌾 Raízes do Amanhã - Painel de Monitoramento Agroecológico
-
-> **Projeto Escolar Autoral desenvolvido para o Concurso Agrinho 2026**
-> **Componente Curricular:** Pensamento Computacional / Matemática II
-> **Instituição:** C. E. Ernestina W. da Silveira — Antônio Olinto - PR
-> **Alunos:** Terceira Série do Ensino Médio
+# 🌾 Raízes do Amanhã — Monitoramento de Impacto Agroecológico
+> **Projeto Interativo de Sustentabilidade Rústica e Pensamento Computacional** > *Submetido ao Concurso Agrinho 2026 — Categoria: Robótica / Programação / Webfront*
 
 ---
 
-## 📋 Sobre o Projeto
+## 📌 Sobre o Projeto
+O **Raízes do Amanhã** é uma plataforma digital desenvolvida para conectar estudantes, técnicos e produtores rurais da **Escola do Campo (Antônio Olinto - PR)** às melhores práticas agroecológicas recomendadas pela **Embrapa**. 
 
-O **Raízes do Amanhã** é uma plataforma digital voltada para a avaliação agroambiental e difusão de práticas regenerativas na agricultura familiar da nossa região. Desenvolvido com base no contexto local de Antônio Olinto, o sistema permite que produtores analisem a sustentabilidade de suas propriedades rústicas e acessem materiais técnicos validados.
-
-### Funcionalidades Principais:
-1. **Simulador de Diagnóstico Agro-Ambiental:** Um formulário inteligente focado em 4 eixos essenciais: Manejo do Solo, Recursos Hídricos (APP), Manejo de Insumos e Biodiversidade & Fauna.
-2. **Painel Dinâmico de Resultados:** Cálculo em tempo real de métricas divididas em:
-   * Práticas de Cultivo
-   * Conservação Ambiental
-   * Gestão & Sociedade
-3. **Biblioteca Integrada:** Central de downloads com acesso direto ao manual científico da Embrapa e à videoaula em formato curto (YouTube Shorts) sobre recuperação de nascentes.
+O sistema foi arquitetado em um ambiente de aplicação única (SPA - *Single Page Application*), combinando automações dinâmicas em JavaScript nativo com uma interface visual minimalista, adaptada e inspirada na identidade do campo paranaense.
 
 ---
 
-## 🛠️ Tecnologias e Pré-requisitos (Edital Agrinho 2026)
+## 🛠️ Tecnologias Utilizadas
+Para garantir leveza, alta performance e compatibilidade em computadores de laboratórios escolares tradicionais, o projeto utiliza puramente tecnologias nativas da Web:
 
-Em conformidade com todas as regras e diretrizes estabelecidas no edital para a **Subcategoria 3: Programação Front-End**, o projeto cumpre rigorosamente os seguintes pontos:
-
-* **Código Autoral e Nativo:** Construído do zero utilizando apenas **HTML5 semântico**, **CSS3 estruturado** para layouts modernos e responsivos, e **JavaScript (ES6+) puro** para a lógica reativa de cálculo de pontos, sem qualquer uso de frameworks ou bibliotecas de terceiros.
-* **Critério de Unidades Alura:** Desenvolvido por estudantes regularmente matriculados que concluíram o mínimo de 2 unidades exigidas no Ambiente Virtual de Aprendizagem da Alura dentro da Trilha de Estudos de 2026.
-
----
-
-## 📂 Estrutura de Arquivos do Repositório
-
-O repositório mantém uma organização limpa e direta na raiz para a correta leitura e publicação automática via GitHub Pages:
-* `index.html` — Estruturação do menu lateral, banner institucional, formulário e central de mídias.
-* `style.css` — Estilização visual (paleta verde-campo, tipografia Inter, cards responsivos e barras de progresso).
-* `script.js` — Lógica algorítmica para escuta de eventos, cálculo de médias ponderadas e animação dos resultados.
+* **HTML5 Estrutural:** Tags semânticas para acessibilidade e organização lógica de dados.
+* **CSS3 Customizado:** Design responsivo, estilização baseada em variáveis (`root`), transições suaves e grid estruturado para telas de diferentes resoluções.
+* **Vanilla JavaScript (ES6+):** Motor do sistema. Controla o estado das abas exclusivas, executa o motor do simulador, manipula os modais e gerencia a lógica de jogos.
+* **Font Awesome Icons & Google Fonts:** Tipografia arredondada de leitura fluida (*Plus Jakarta Sans*) e iconografia técnica.
 
 ---
 
-## 🚀 Como Visualizar a Aplicação
+## ⚙️ Funcionalidades Implementadas
 
-O projeto está publicado e disponível para testes interativos através do link oficial gerado pelo GitHub Pages:
-🔗 *[Insira aqui o link que você ativou nas configurações do seu GitHub]*
+### 1. 📊 Simulador de Diagnóstico Computacional
+Um algoritmo matemático que processa as respostas de manejo da propriedade (cobertura de palhada, variedade anual de culturas e uso de insumos químicos) e calcula instantaneamente o **Índice de Sustentabilidade da Lavoura**, emitindo alertas visuais categorizados em três níveis de criticidade (Excelente, Regular e Alerta Crítico).
+
+### 2. 🗂️ Manual Técnico Interativo (Pilares Embrapa)
+Seis blocos visuais dedicados às práticas mecânicas e ecológicas essenciais:
+* Rotação e Diversificação de Culturas
+* Adubação Verde e Cobertura Viva
+* Manejo Integrado de Pragas (MIP)
+* Sistemas Agroflorestais (SAFs)
+* Recuperação e Proteção de Nascentes
+* Curvas de Nível e Terraceamento
+
+> **Comportamento Dinâmico:** Ao clicar em qualquer card, um modal em camada (*Backdrop Overlay*) renderiza os benefícios e as aplicações práticas de campo daquela categoria.
+
+### 3. 🎓 Quiz de Fixação Continuada
+Um banco de dados estruturado contendo **30 questões** divididas metodologicamente por complexidade:
+* **🌱 Nível Fácil:** Questões de 1 a 10 (Conceitos básicos)
+* **🌿 Nível Médio:** Questões de 11 a 20 (Dinâmicas regulatórias e manejos)
+* **🌳 Nível Difícil:** Questões de 21 a 30 (Bioquímica e engenharia de solo)
+Apresenta correção em tempo real, travamento de cliques após a escolha e barra de progresso responsiva.
+
+### 4. 🎴 Jogo da Memória Computacional
+Módulo gamificado que utiliza o algoritmo de embaralhamento reverso **Fisher-Yates** para dispor cartas de conceitos agroecológicos no tabuleiro. Inclui contadores automáticos de movimentos (`moves`) e um cronômetro síncrono.
+
+### 5. 📂 Central de Mídias Integrada
+Visualizador interno embutido (*Viewport Frame*) capaz de carregar e projetar manuais científicos em formato PDF e vídeos educativos diretamente na interface, dispensando a necessidade de redirecionar o usuário para abas externas do navegador.
 
 ---
-🌿 *Tecnologia e inovação aplicadas para fortalecer a agricultura familiar e proteger o futuro da nossa comunidade rústica!*
+
+## 📂 Estrutura de Arquivos do Projeto
+```text
+├── index.html       # Estrutura HTML5 semântica e esqueleto das abas
+├── style.css        # Identidade visual rústica verde-escura, grids e modais
+└── script.js        # Lógica, coleções de dados, quiz e regras do simulador
