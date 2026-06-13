@@ -63,7 +63,7 @@ function executarDiagnostico() {
     else if (agua === 'medio') nota += 10;
     else nota += 3;
 
-    // Pesos dos Insumos
+    // Pesos do Insumos
     if (insumos === 'excelente') nota += 25;
     else if (insumos === 'alto') nota += 18;
     else if (insumos === 'medio') nota += 10;
@@ -150,7 +150,7 @@ const dadosEmbrapaPopups = {
     curvas: {
         titulo: "🚜 Curvas de Nível e Terraceamento",
         intro: "Técnicas milenares de engenharia rústica que consistem em identificar as linhas de mesma altitude em encostas e construir barreiras ou degraus para quebrar a força gravitacional de descida das enxurradas.",
-        beneficios: ["Retém a água na lavoura, forçando sua infiltração lenta no lençol freático.", "Impede o arraste da camada fértil superficial do solo.", "Elimina de forma absoluta a formação de voçorocas e sulcos erosivos."],
+        beneficios: ["Retém a água na lavoura, forçando sua infiltração lenta no lençol freático.", "Impedir o arraste da camada fértil superficial do solo.", "Elimina de forma absoluta a formação de voçorocas e sulcos erosivos."],
         exemplo: "Marcação de terrenos inclinados com pé-de-galinha ou nível de mangueira para construção de terraços de retention."
     }
 };
@@ -334,7 +334,7 @@ setTimeout(() => { if(document.getElementById('quiz-question-title')) renderizar
 
 
 // ==========================================================================
-// 4. CENTRAL DE MÍDIAS INTEGRADA (VIEWPORT FRAME COM O NOVO LINK ATUALIZADO)
+// 4. CENTRAL DE MÍDIAS INTEGRADA (VIEWPORT FRAME COM O NOVO LINK DA UFPR)
 // ==========================================================================
 function abrirMidia(tipoMidia) {
     const container = document.getElementById('media-viewport-container');
@@ -345,10 +345,10 @@ function abrirMidia(tipoMidia) {
     box.innerHTML = "";
     
     if (tipoMidia === 'pdf') {
-        titulo.innerHTML = "📄 Documento Técnico: Livro Rede AgroPesquisa (IDR-Paraná)";
-        // Novo link oficial configurado com segurança para o visualizador de frames:
-        const urlPdf = "https://www.idrparana.pr.gov.br/sites/iapar/arquivos_restritos/files/documento/2025-04/Livro%20Rede%20AgroPesquisa_livro%202_P3_digital.pdf";
-        box.innerHTML = `<iframe src="https://docs.google.com/gview?url=${encodeURIComponent(urlPdf)}&embedded=true" style="width:100%; height:100%; border:none;"></iframe>`;
+        titulo.innerHTML = "📄 Livro Técnico: Conservando os Solos (Manual UFPR)";
+        // Novo link oficial do acervo digital da UFPR configurado diretamente no iframe para máxima compatibilidade:
+        const urlPdf = "https://acervodigital.ufpr.br/xmlui/bitstream/handle/1884/85232/Conservando_os_solos.pdf?sequence=1&isAllowed=y";
+        box.innerHTML = `<iframe src="${urlPdf}" style="width:100%; height:100%; border:none;"></iframe>`;
     } else if (tipoMidia === 'video') {
         titulo.innerHTML = "🎥 Videoaula Prática: Preservação de Nascentes Rurais";
         box.innerHTML = `<iframe src="https://www.youtube.com/embed/FHraCDyIhrI" style="width:100%; height:100%; border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
