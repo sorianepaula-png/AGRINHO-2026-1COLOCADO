@@ -238,8 +238,7 @@
 
                             <div class="quiz-card-box">
                                 <h4 id="quiz-question-text" class="quiz-prompt">Carregando pergunta...</h4>
-                                <div id="quiz-options-box" class="quiz-options-list">
-                                    </div>
+                                <div id="quiz-options-box" class="quiz-options-list"></div>
                             </div>
 
                             <div id="quiz-hint-box" class="quiz-hint-alert hidden"></div>
@@ -266,7 +265,7 @@
 
                     <section class="card-base">
                         <h3 class="card-title">📋 Relatório de Rendimento Escolar</h3>
-                        <p class="card-subtitle">Notas salvas localmente no navegador referentes aos blocos avaliados:</p>
+                        <p class="card-subtitle">Notas salvas localmente no navegador referentes aos blocos evaluated:</p>
                         
                         <div class="table-scroller">
                             <table class="report-table">
@@ -278,8 +277,7 @@
                                         <th>Situação</th>
                                     </tr>
                                 </thead>
-                                <tbody id="corpo-tabela-relatorios">
-                                    </tbody>
+                                <tbody id="corpo-tabela-relatorios"></tbody>
                             </table>
                         </div>
                     </section>
@@ -289,7 +287,7 @@
             <div id="view-materiais" class="view-pane">
                 <section class="card-base">
                     <h3 class="card-title">📂 Biblioteca de Arquivos e Guias Práticos</h3>
-                    <p class="card-subtitle">Acesse de forma direta os manuais técnicos de referência pedagógica:</p>
+                    <p class="card-subtitle">Acesse e visualize de forma integrada os manuais técnicos de referência pedagógica:</p>
                     
                     <div class="materials-wrapper">
                         <div class="material-row">
@@ -297,10 +295,10 @@
                                 <span class="mat-icon">📄</span>
                                 <div>
                                     <h4>Cartilha do Solo Vivo.pdf</h4>
-                                    <p>Manual prático oficial da Embrapa tratando de palhadas protetoras, adubação verde e microorganismos do solo.</p>
+                                    <p>Manual prático oficial da Embrapa tratando de palhadas protetoras, adubação verde e microrganismos do solo.</p>
                                 </div>
                             </div>
-                            <a href="https://www.infoteca.cnptia.embrapa.br/bitstream/doc/498802/1/doc90.pdf" target="_blank" class="link-download">Baixar PDF 📥</a>
+                            <button onclick="carregarMidia('pdf')" class="link-download" style="cursor: pointer; border: none; font-family: inherit;">Visualizar Guia 👁️</button>
                         </div>
 
                         <div class="material-row">
@@ -311,8 +309,16 @@
                                     <p>Produção audiovisual detalhando o cercamento correto de nascentes rústicas e conservação de APPs.</p>
                                 </div>
                             </div>
-                            <a href="https://youtube.com/shorts/FHraCDyIhrI?si=nQWpTg8aAR6qLqGH" target="_blank" class="link-watch">Assistir Aula 🔗</a>
+                            <button onclick="carregarMidia('video')" class="link-watch" style="cursor: pointer; border: none; font-family: inherit;">Assistir Aula 🔗</button>
                         </div>
+                    </div>
+
+                    <div id="media-viewport-container" class="media-viewport-box" style="display: none; margin-top: 2rem; border: 1px solid #cbd5e1; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                        <div class="media-viewport-top" style="background: #f1f5f9; padding: 0.75rem 1.2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0;">
+                            <h4 id="media-viewport-title" style="margin: 0; color: #1e293b; font-size: 0.95rem; font-weight: 600;">Visualizador Ativo</h4>
+                            <button onclick="fecharMidia()" style="background: #ef4444; color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 500;">Fechar ✖</button>
+                        </div>
+                        <div id="media-frame-box" style="width: 100%; height: 550px; background: #fafafa;"></div>
                     </div>
                 </section>
             </div>
@@ -406,6 +412,37 @@
             </div>
         </main>
     </div>
+
+    <script>
+        function carregarMidia(tipoMidia) {
+            const container = document.getElementById('media-viewport-container');
+            const titulo = document.getElementById('media-viewport-title');
+            const box = document.getElementById('media-frame-box');
+            
+            container.style.display = "block";
+            box.innerHTML = "";
+            
+            if (tipoMidia === 'pdf') {
+                titulo.innerHTML = "📄 Documento Técnico: Cartilha do Solo Vivo (Embrapa)";
+                // URL estável do documento da Embrapa rodando pelo visualizador de documentos seguro
+                const urlPdf = "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/498802/1/doc90.pdf";
+                box.innerHTML = `<iframe src="https://docs.google.com/gview?url=${urlPdf}&embedded=true" style="width:100%; height:100%; border:none;"></iframe>`;
+            } else if (tipoMidia === 'video') {
+                titulo.innerHTML = "🎥 Videoaula Prática: Preservação de Nascentes Rurais";
+                // ID do vídeo convertido para formato de incorporação aceito em iframes (/embed/)
+                box.innerHTML = `<iframe src="https://www.youtube.com/embed/FHraCDyIhrI" style="width:100%; height:100%; border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            }
+            
+            container.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function fecharMidia() {
+            const container = document.getElementById('media-viewport-container');
+            const box = document.getElementById('media-frame-box');
+            container.style.display = "none";
+            box.innerHTML = "";
+        }
+    </script>
 
     <script src="script.js"></script>
 </body>
