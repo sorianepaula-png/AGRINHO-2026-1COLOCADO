@@ -103,7 +103,7 @@ function executarDiagnostico() {
         badge.className = "pill-status state-wait"; 
         badge.innerText = "REGULAR";
         detalheBox.className = "output-alert alerta";
-        detalheBox.innerHTML = `<strong>🌿 Índice Intermediário: ${nota}%</strong><br>Atenção às recomendações da Embrapa. É viável expandir o plantio direto e diminuir defensivos pesados.`;
+        detalheBox.innerHTML = `<strong>🌿 Índice Intermediário: ${nota}%</strong><br>Atenção às recomendações técnicas. É viável expandir o plantio direto e diminuir defensivos pesados.`;
     } else {
         badge.className = "pill-status state-wait"; 
         badge.innerText = "ALERTA CRÍTICO";
@@ -114,7 +114,7 @@ function executarDiagnostico() {
 
 
 // ==========================================================================
-// 2. INFOGRÁFICOS DO POPUP (CONTEÚDO DA EMBAIXADA EMBRAPA)
+// 2. INFOGRÁFICOS DO POPUP (CONTEÚDO DO ACERVO DIGITAL DA UFPR)
 // ==========================================================================
 const dadosEmbrapaPopups = {
     rotacao: {
@@ -149,9 +149,9 @@ const dadosEmbrapaPopups = {
     },
     curvas: {
         titulo: "🚜 Curvas de Nível e Terraceamento",
-        intro: "Técnicas milenares de engenharia rústica que consistem em identificar as linhas de mesma altitude em encostas e construir barreiras ou degraus para quebrar a força gravitacional de descida das enxurradas.",
-        beneficios: ["Retém a água na lavoura, forçando sua infiltração lenta no lençol freático.", "Impedir o arraste da camada fértil superficial do solo.", "Elimina de forma absoluta a formação de voçorocas e sulcos erosivos."],
-        exemplo: "Marcação de terrenos inclinados com pé-de-galinha ou nível de mangueira para construção de terraços de retention."
+        intro: "Técnicas milenares de engenharia rústica que consistem in identificar as linhas de mesma altitude em encostas e construir barreiras ou degraus para quebrar a força gravitacional de descida das enxurradas.",
+        beneficios: ["Retém a água na lavoura, forçando sua infiltração lenta no lençol freático.", "Impeça o arraste da camada fértil superficial do solo.", "Elimina de forma absoluta a formação de voçorocas e sulcos erosivos."],
+        exemplo: "Marcação de terrenos inclinados com pé-de-galinha ou nível de mangueira para construção de terraços de retenção."
     }
 };
 
@@ -218,7 +218,7 @@ const databaseQuestoes = {
         { q: "O nível econômico de dano no MIP serve para determinar o quê?", o: ["O preço final do grão no mercado", "O momento exato em que a praga causa prejuízo real justificando intervenção", "O custo do combustível do trator", "A quantidade de adubo por hectare"], a: 1 },
         { q: "Qual elemento é central na transição agroecológica?", o: ["Uso massivo de sementes transgênicas", "Redução gradual de insumos sintéticos industriais", "Abandono total da rotação de culturas", "Aumento do desmatamento legal"], a: 1 },
         { q: "Que benefício os Corredores Ecológicos trazem às propriedades?", o: ["Isolamento completo dos animais", "Livre trânsito e fluxo gênico da fauna silvestre entre fragmentos florestais", "Facilidade para queimar os campos", "Aumento da erosão nas margens"], a: 1 },
-        { q: "A 'cobertura morta' atua como barreira contra qual processo físico?", o: ["Compactação subterrânea pura", "Impacto direto das gotas de chuva evitando o selamento superficial", "Evaporação do lençol freático profundo", "Crescimento de raízes pivotantes"], a: 1 },
+        { q: "A 'cobertura morta' atua como barreira contra qual processo físico?", o: ["Compactação subterrânea pura", "Impacto direto das gotas de chuva evitando o selamento superficial", "Evaporação do lençol freático profundo", "Crescimento de raíces pivotantes"], a: 1 },
         { q: "Por que árvores nativas são mantidas em pastagens no modelo sustentável?", o: ["Para atrapalhar o maquinário", "Proporcionar conforto térmico ao gado e reciclar nutrientes profundos", "Secar o solo ao redor", "Impedir o nascimento do capim"], a: 1 },
         { q: "Qual destino correto deve ser dado às embalagens vazias de agrotóxicos?", o: ["Queimar nos fundos da propriedade", "Tríplice lavagem, perfuração e devolução nos centros credenciados", "Enterrar próximo ao riacho", "Reutilizar para guardar água de consumo"], a: 1 },
         { q: "O dessecamento excessivo sem palhada expõe o solo a qual dano?", o: ["Lixiviação extrema provocada pelo vento e lixiviação hídrica imediata", "Aumento excessivo de matéria orgânica", "Crescimento espontâneo de árvores", "Encharcamento perpétuo"], a: 0 },
@@ -334,7 +334,7 @@ setTimeout(() => { if(document.getElementById('quiz-question-title')) renderizar
 
 
 // ==========================================================================
-// 4. CENTRAL DE MÍDIAS INTEGRADA (VIEWPORT FRAME COM O NOVO LINK DA UFPR)
+// 4. CENTRAL DE MÍDIAS INTEGRADA (VIEWPORT FRAME ATUALIZADO E COMPATÍVEL COM UFPR)
 // ==========================================================================
 function abrirMidia(tipoMidia) {
     const container = document.getElementById('media-viewport-container');
@@ -345,10 +345,10 @@ function abrirMidia(tipoMidia) {
     box.innerHTML = "";
     
     if (tipoMidia === 'pdf') {
-        titulo.innerHTML = "📄 Livro Técnico: Conservando os Solos (Manual UFPR)";
-        // Novo link oficial do acervo digital da UFPR configurado diretamente no iframe para máxima compatibilidade:
+        titulo.innerHTML = "📄 Livro Técnico: Conservando os Solos (Manual do Acervo Digital da UFPR)";
+        // URL Oficial da UFPR passada pelo proxy seguro do gview para evitar bloqueios de iframe (X-Frame-Options)
         const urlPdf = "https://acervodigital.ufpr.br/xmlui/bitstream/handle/1884/85232/Conservando_os_solos.pdf?sequence=1&isAllowed=y";
-        box.innerHTML = `<iframe src="${urlPdf}" style="width:100%; height:100%; border:none;"></iframe>`;
+        box.innerHTML = `<iframe src="https://docs.google.com/gview?url=${encodeURIComponent(urlPdf)}&embedded=true" style="width:100%; height:100%; border:none;"></iframe>`;
     } else if (tipoMidia === 'video') {
         titulo.innerHTML = "🎥 Videoaula Prática: Preservação de Nascentes Rurais";
         box.innerHTML = `<iframe src="https://www.youtube.com/embed/FHraCDyIhrI" style="width:100%; height:100%; border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
