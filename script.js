@@ -95,7 +95,7 @@ function executarDiagnostico() {
     detalheBox.style.display = "block";
 
     if (nota >= 80) {
-        badge.className = "pill-status state-active"; // classe equivalente a excelente / ativo
+        badge.className = "pill-status state-active"; 
         badge.innerText = "EXCELENTE";
         detalheBox.className = "output-alert bom";
         detalheBox.innerHTML = `<strong>✨ Índice Impecável: ${nota}%</strong><br>Propriedade modelo! Os manejos adotados conservam a macroestrutura rústica do solo e resguardam os mananciais locais.`;
@@ -151,7 +151,7 @@ const dadosEmbrapaPopups = {
         titulo: "🚜 Curvas de Nível e Terraceamento",
         intro: "Técnicas milenares de engenharia rústica que consistem em identificar as linhas de mesma altitude em encostas e construir barreiras ou degraus para quebrar a força gravitacional de descida das enxurradas.",
         beneficios: ["Retém a água na lavoura, forçando sua infiltração lenta no lençol freático.", "Impede o arraste da camada fértil superficial do solo.", "Elimina de forma absoluta a formação de voçorocas e sulcos erosivos."],
-        exemplo: "Marcação de terrenos inclinados com pé-de-galinha ou nível de mangueira para construção de terraços de retenção."
+        exemplo: "Marcação de terrenos inclinados com pé-de-galinha ou nível de mangueira para construção de terraços de retention."
     }
 };
 
@@ -273,7 +273,7 @@ function renderizarQuestaoQuiz() {
     dadosQuestao.o.forEach((opcao, indice) => {
         const btn = document.createElement('button');
         btn.innerText = opcao;
-        btn.className = "input-label"; // estilização básica reaproveitada do CSS
+        btn.className = "input-label"; 
         btn.style.cssText = "width:100%; text-align:left; padding:12px 16px; border:1px solid var(--border-gray); border-radius:8px; background:#fff; cursor:pointer; font-weight:500; font-size:0.9rem; transition:all 0.2s; display:block;";
         
         btn.onmouseover = () => btn.style.background = "#f4f7f5";
@@ -334,7 +334,7 @@ setTimeout(() => { if(document.getElementById('quiz-question-title')) renderizar
 
 
 // ==========================================================================
-// 4. CENTRAL DE MÍDIAS INTEGRADA (VIEWPORT FRAME)
+// 4. CENTRAL DE MÍDIAS INTEGRADA (VIEWPORT FRAME COM O NOVO LINK ATUALIZADO)
 // ==========================================================================
 function abrirMidia(tipoMidia) {
     const container = document.getElementById('media-viewport-container');
@@ -345,9 +345,10 @@ function abrirMidia(tipoMidia) {
     box.innerHTML = "";
     
     if (tipoMidia === 'pdf') {
-        titulo.innerHTML = "📄 Documento Técnico: Cartilha do Solo Vivo (Embrapa)";
-        const urlPdf = "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/498802/1/doc90.pdf";
-        box.innerHTML = `<iframe src="https://docs.google.com/gview?url=${urlPdf}&embedded=true" style="width:100%; height:100%; border:none;"></iframe>`;
+        titulo.innerHTML = "📄 Documento Técnico: Livro Rede AgroPesquisa (IDR-Paraná)";
+        // Novo link oficial configurado com segurança para o visualizador de frames:
+        const urlPdf = "https://www.idrparana.pr.gov.br/sites/iapar/arquivos_restritos/files/documento/2025-04/Livro%20Rede%20AgroPesquisa_livro%202_P3_digital.pdf";
+        box.innerHTML = `<iframe src="https://docs.google.com/gview?url=${encodeURIComponent(urlPdf)}&embedded=true" style="width:100%; height:100%; border:none;"></iframe>`;
     } else if (tipoMidia === 'video') {
         titulo.innerHTML = "🎥 Videoaula Prática: Preservação de Nascentes Rurais";
         box.innerHTML = `<iframe src="https://www.youtube.com/embed/FHraCDyIhrI" style="width:100%; height:100%; border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
@@ -420,7 +421,7 @@ function inicializarJogo() {
     
     cartasEmbaralhadas.forEach(item => {
         const bloco = document.createElement('div');
-        bloco.className = "memory-tile"; // estilizada no CSS
+        bloco.className = "memory-tile"; 
         
         bloco.innerHTML = `
             <div class="tile-back">🌱</div>
